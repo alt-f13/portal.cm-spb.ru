@@ -1,0 +1,20 @@
+{
+  "name": "test",
+  "authors": [
+    "alt-f13 <galyamin.d.d@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery.couch": "*"
+  }
+}

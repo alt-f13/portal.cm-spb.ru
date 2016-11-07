@@ -2,6 +2,14 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/pickmeup.css" type="text/css" />
+    <link href="css/main.css" rel="stylesheet">
+
     <!-- jQuery assets -->
     <script src="/_utils/script/json2.js"></script>
     <script src="/_utils/script/jquery.js?1.2.6"></script>
@@ -11,10 +19,12 @@
     <script src="/_utils/script/jquery.form.js?0.9.0"></script>
     <script src="assets/jquery.tmpl.js" charset="utf-8"></script>
     <script src="assets/mindmup-editabletable.js" charset="utf-8"></script>
+    <script src="assets/jquery.pickmeup.js" charset="utf-8"></script>
+    <script type="text/javascript" src="assets/pickmeup.js"></script>
+
     <script src="assets/date.js" charset="utf-8"></script>
     <script src="assets/moment.min.js" charset="utf-8"></script>
 
-    <script src="assets/index.js" charset="utf-8"></script>
 
     <script type="text/javascript">
 
@@ -77,6 +87,7 @@
     <script id="documents" type="text/x-jquery-tmpl">
       <li>${id} ${key}</li>
     </script>
+    <div id="pickmeup"></div>
     <form class="documentForm" method="post" action="" enctype="multipart/form-data">
       <input type="text" name="_db" id="_db" placeholder="Database ID" />
       <input type="text" name="_id" id="_id" placeholder="Document ID" />
@@ -95,5 +106,6 @@
      }
     });
     </script>
+    <script src="assets/index.js" charset="utf-8"></script>
   </body>
 </html>

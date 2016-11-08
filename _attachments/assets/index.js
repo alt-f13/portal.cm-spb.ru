@@ -56,6 +56,7 @@ function loadDoc() {
     // If found, then set the revision in the form and save
     success: function(data) {
       console.log(data);
+      _rev=data._rev;
       $("#dataTable").html("");
       $("#dataTable").append(data.data).editableTableWidget();
 

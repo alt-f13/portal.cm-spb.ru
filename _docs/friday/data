@@ -1,21 +1,10 @@
-_id monday
-title monday
-<thead>
+<tbody>
     <tr>
-        <td colspan="10">Понедельник</td>
-        <td id="datepicker" colspan="11">
-            <script>
-                var now2 = Date.today().next().monday();
-                console.log(now2);
-                var now = moment(now2);
-                now.lang('ru');
-                $("#datepicker").text(now.format('DD-MM-YYYY'));
-            </script>
+        <td tabindex="1" colspan="10" align="right">Пятница</td>
+        <td id="datepicker" tabindex="1" colspan="11" class="head">
+
         </td>
     </tr>
-</thead>
-<tbody>
-
     <tr>
         <td tabindex="1">
             № п/п
@@ -86,81 +75,64 @@ title monday
             1
         </td>
         <td tabindex="1">
-            инф
-            1,2
-            18
-        </td>
-        <td tabindex="1">
-            ин.яз
-            7,12
-        </td>
-        <td tabindex="1">
-            физ
-            15
-        </td>
-        <td tabindex="1">
-            общ
-            14
-        </td>
-        <td tabindex="1">
-            мат
-            16
-        </td>
-        <td tabindex="1">
-            биол
-            21
+            п
         </td>
         <td tabindex="1">
             ф-ра
         </td>
         <td tabindex="1">
-            лит
-            9
+            ин.яз 7,12
+        </td>
+        <td tabindex="1">
+            инф 1,2 18
+        </td>
+        <td tabindex="1">
+            хим 20
+        </td>
+        <td tabindex="1">
+            инф1 17
+        </td>
+        <td tabindex="1">
+            общ 14
         </td>
         <td tabindex="1">
             ф-ра
         </td>
         <td tabindex="1">
+            мат 13
+        </td>
+        <td tabindex="1">
+            мат 19
+        </td>
+        <td tabindex="1">
             п
         </td>
         <td tabindex="1">
-            ист
-            3
+            ист 3
         </td>
         <td tabindex="1">
-            п
+            ос.ав 2-5
         </td>
         <td tabindex="1">
-            бж
-            5
+            черч 10
         </td>
         <td tabindex="1">
-            мдк
-            11
+            мдк 1
         </td>
         <td tabindex="1">
-            оит1
-            17
+            п.раб 9
         </td>
         <td tabindex="1">
-            птэ
-            1
+            бж 5
         </td>
         <td tabindex="1">
-            э/т
-            2-7
+            п.раб 9
         </td>
         <td tabindex="1">
-            э/т
-            2-7
+            э/т 2-7
         </td>
         <td tabindex="1">
-            техн
-            8
-        </td>
-        <td tabindex="1">
-            мдк
-            2-11
+            мдк 2-11
         </td>
     </tr>
     <tr>
@@ -168,82 +140,64 @@ title monday
             2
         </td>
         <td tabindex="1">
-            инф
-            1,2
-            18
-        </td>
-        <td tabindex="1">
-            ин.яз
-            7,12
-        </td>
-        <td tabindex="1">
-            физ
-            15
-        </td>
-        <td tabindex="1">
-            общ
-            14
-        </td>
-        <td tabindex="1">
-            мат
-            16
-        </td>
-        <td tabindex="1">
-            биол
-            21
+            р
         </td>
         <td tabindex="1">
             ф-ра
         </td>
         <td tabindex="1">
-            лит
-            9
+            ин.яз 7,12
         </td>
         <td tabindex="1">
-            мат
-            13
+            инф 1,2 18
+        </td>
+        <td tabindex="1">
+            хим 20
+        </td>
+        <td tabindex="1">
+            инф1 17
+        </td>
+        <td tabindex="1">
+            ист 3
+        </td>
+        <td tabindex="1">
+            ф-ра
+        </td>
+        <td tabindex="1">
+            физ 13
+        </td>
+        <td tabindex="1">
+            мат 19
         </td>
         <td tabindex="1">
             р
         </td>
         <td tabindex="1">
-            обж
-            5
+            общ 14
         </td>
         <td tabindex="1">
-            р
+            ос.ав 2-5
         </td>
         <td tabindex="1">
-            ист
-            3
+            черч 10
         </td>
         <td tabindex="1">
-            мдк
-            11
+            мдк 1
         </td>
         <td tabindex="1">
-            оит
-            17
+            п.раб 9
         </td>
         <td tabindex="1">
-            м/в
-            8
+            бж 5
         </td>
         <td tabindex="1">
-            э/т
-            2-7
+            п.раб 9
         </td>
         <td tabindex="1">
-            э/т
-            2-7
+            э/т 2-7
         </td>
         <td tabindex="1">
-            техн
-            8
-        </td>
-        <td tabindex="1">
-            мдк
-            2-11
+            мдк 2-11
         </td>
     </tr>
     <tr>
@@ -251,81 +205,64 @@ title monday
             3
         </td>
         <td tabindex="1">
-            инф
-            18
-        </td>
-        <td tabindex="1">
-            мат
-            17
-        </td>
-        <td tabindex="1">
-            обж
-            5
-        </td>
-        <td tabindex="1">
-            физ
-            15
-        </td>
-        <td tabindex="1">
-            ист
-            3
-        </td>
-        <td tabindex="1">
-            мат
-            16
-        </td>
-        <td tabindex="1">
-            биол
-            21
-        </td>
-        <td tabindex="1">
-            р.яз
-            9
-        </td>
-        <td tabindex="1">
-            ин.яз
-            7,12
-        </td>
-        <td tabindex="1">
             а
         </td>
         <td tabindex="1">
-            мат
-            13
+            лит 9
         </td>
         <td tabindex="1">
-            а
+            мат 19
+        </td>
+        <td tabindex="1">
+            инф 18
         </td>
         <td tabindex="1">
             ф-ра
         </td>
         <td tabindex="1">
-            э/т
-            2-7
+            инф 17
         </td>
         <td tabindex="1">
-            мдк
-            1
+            ист 3
         </td>
         <td tabindex="1">
-            ох.тр
-            10
+            хим 20
         </td>
         <td tabindex="1">
-            метр
-            8
+            мдк 2-5
         </td>
         <td tabindex="1">
-            мдк
-            11
+            биол 21
         </td>
         <td tabindex="1">
-            техн
-            8
+            а
         </td>
         <td tabindex="1">
-            мдк
-            2-11
+            общ 14
+        </td>
+        <td tabindex="1">
+            Эл.т 2-7
+        </td>
+        <td tabindex="1">
+            ин.яз 7,12
+        </td>
+        <td tabindex="1">
+            бж 5
+        </td>
+        <td tabindex="1">
+            мдк 2-11
+        </td>
+        <td tabindex="1">
+            ох.тр 10
+        </td>
+        <td tabindex="1">
+            бж 5
+        </td>
+        <td tabindex="1">
+            п.раб 9
+        </td>
+        <td tabindex="1">
+            окжд 1
         </td>
     </tr>
     <tr>
@@ -333,80 +270,64 @@ title monday
             4
         </td>
         <td tabindex="1">
-            ф-ра
-        </td>
-        <td tabindex="1">
-            обж
-            5
-        </td>
-        <td tabindex="1">
-            общ
-            14
-        </td>
-        <td tabindex="1">
-            физ
-            15
-        </td>
-        <td tabindex="1">
-            ист
-            3
-        </td>
-        <td tabindex="1">
-            мат
-            16
-        </td>
-        <td tabindex="1">
-            ин.яз
-            7,12
-        </td>
-        <td tabindex="1">
-            э/т
-            2-7
-        </td>
-        <td tabindex="1">
-            лит
-            9
-        </td>
-        <td tabindex="1">
             к
         </td>
         <td tabindex="1">
-            мат
-            13
+            черч 10
         </td>
         <td tabindex="1">
-            к
+            мат 19
+        </td>
+        <td tabindex="1">
+            ист 3
+        </td>
+        <td tabindex="1">
+            ин.яз 7,12
         </td>
         <td tabindex="1">
             ф-ра
         </td>
         <td tabindex="1">
-            экол
-            20
+            мат 17
         </td>
         <td tabindex="1">
-            мдк
-            1
+            биол 21
         </td>
         <td tabindex="1">
-            ох.тр
-            10
+            мдк 2-5
         </td>
         <td tabindex="1">
-            метр
-            8
+            общ 14
         </td>
         <td tabindex="1">
-            мдк
-            11
+            к
         </td>
         <td tabindex="1">
-            техн
-            8
+            физ 13
         </td>
         <td tabindex="1">
-            мдк
-            2-11
+            Эл.т 2-7
+        </td>
+        <td tabindex="1">
+            метр 8
+        </td>
+        <td tabindex="1">
+            бж 5
+        </td>
+        <td tabindex="1">
+            окжд 1
+        </td>
+        <td tabindex="1">
+            ф-ра
+        </td>
+        <td tabindex="1">
+            ох.тр 1
+        </td>
+        <td tabindex="1">
+            п.раб 9
+        </td>
+        <td tabindex="1">
+            мдк 2-11
         </td>
     </tr>
     <tr>
@@ -414,81 +335,64 @@ title monday
             5
         </td>
         <td tabindex="1">
-            мат
-            16
-        </td>
-        <td tabindex="1">
-            мдк
-            2-11
-        </td>
-        <td tabindex="1">
-            биол
-            21
-        </td>
-        <td tabindex="1">
-            хим
-            20
-        </td>
-        <td tabindex="1">
-            физ
-            15
-        </td>
-        <td tabindex="1">
-            обж
-            5
-        </td>
-        <td tabindex="1">
-            мат
-            17
-        </td>
-        <td tabindex="1">
-            сл.д
-            8
-        </td>
-        <td tabindex="1">
-            лит
-            9
-        </td>
-        <td tabindex="1">
             т
         </td>
         <td tabindex="1">
-            физ
-            13
+            хим 20
         </td>
         <td tabindex="1">
-            т
+            лит 6
         </td>
         <td tabindex="1">
-            э/тех
-            2-7
+            черч 10
+        </td>
+        <td tabindex="1">
+            ин.яз 7,12
         </td>
         <td tabindex="1">
             ф-ра
         </td>
         <td tabindex="1">
-            мдк
-            1
+            мат 17
         </td>
         <td tabindex="1">
-            мдк
-            2-11
+            ист 3
         </td>
         <td tabindex="1">
-            ох.тр
-            10
+            биол 21
         </td>
         <td tabindex="1">
-            мдк
-            11
+            общ 14
         </td>
         <td tabindex="1">
-            оит
-            18
+            т
         </td>
         <td tabindex="1">
-            ин.яз
-            7,12
+            мат 13
+        </td>
+        <td tabindex="1">
+            мдк 2-5
+        </td>
+        <td tabindex="1">
+            метр 8
+        </td>
+        <td tabindex="1">
+            мдк 1
+        </td>
+        <td tabindex="1">
+            бж 5
+        </td>
+        <td tabindex="1">
+            ф-ра
+        </td>
+        <td tabindex="1">
+            ох.тр 1
+        </td>
+        <td tabindex="1">
+            инф 18
+        </td>
+        <td tabindex="1">
+            мдк 2-11
         </td>
     </tr>
     <tr>
@@ -496,80 +400,64 @@ title monday
             6
         </td>
         <td tabindex="1">
-            мат
-            16
-        </td>
-        <td tabindex="1">
-            мдк
-            2-11
-        </td>
-        <td tabindex="1">
-            сл.д
-            8
-        </td>
-        <td tabindex="1">
-            хим
-            20
-        </td>
-        <td tabindex="1">
-            физ
-            15
-        </td>
-        <td tabindex="1">
-            обж
-            5
-        </td>
-        <td tabindex="1">
-            мат
-            17
-        </td>
-        <td tabindex="1">
-            геог
-            21
-        </td>
-        <td tabindex="1">
-            р.яз
-            9
-        </td>
-        <td tabindex="1">
             и
         </td>
         <td tabindex="1">
-            физ
-            13
+            хим 20
         </td>
         <td tabindex="1">
-            и
+            лит 6
         </td>
         <td tabindex="1">
-            э/тех
-            2-7
+            мат 19
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            инф2 17
+        </td>
+        <td tabindex="1">
+            ин.яз 7,12
+        </td>
+        <td tabindex="1">
+            общ 14
+        </td>
+        <td tabindex="1">
+            геог 21
         </td>
         <td tabindex="1">
             ф-ра
         </td>
         <td tabindex="1">
-            мдк
-            1
+            и
         </td>
         <td tabindex="1">
-            мдк
-            2-11
+            мат 13
         </td>
         <td tabindex="1">
-            ф-ра
+            мдк 2-5
         </td>
         <td tabindex="1">
-            мдк
-            11
+            метр 8
         </td>
         <td tabindex="1">
-            оит
-            18
+            мдк 1
         </td>
         <td tabindex="1">
-            ин.яз
-            7,12
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            бж 5
+        </td>
+        <td tabindex="1">
+            ох.тр 1
+        </td>
+        <td tabindex="1">
+            инф 18
+        </td>
+        <td tabindex="1">
+            мдк 2-11
         </td>
     </tr>
     <tr>
@@ -577,43 +465,31 @@ title monday
             7
         </td>
         <td tabindex="1">
-            биол
-            21
-        </td>
-        <td tabindex="1">
-            мдк
-            2-11
-        </td>
-        <td tabindex="1">
-            хим
-            20
-        </td>
-        <td tabindex="1">
-            обж
-            5
-        </td>
-        <td tabindex="1">
-            р.яз
-            9
-        </td>
-        <td tabindex="1">
-            общ
-            14
-        </td>
-        <td tabindex="1">
-            мат
-            17
-        </td>
-        <td tabindex="1">
-            физ
-            15
-        </td>
-        <td tabindex="1">
-            мат
-            13
-        </td>
-        <td tabindex="1">
             к
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            устр 1
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            инф2 17
+        </td>
+        <td tabindex="1">
+            р.яз 6
+        </td>
+        <td tabindex="1">
+            общ 14
+        </td>
+        <td tabindex="1">
+            физ 13
         </td>
         <td tabindex="1">
             ф-ра
@@ -622,70 +498,63 @@ title monday
             к
         </td>
         <td tabindex="1">
-            окжд
-            8
+            инф 1,2 18
         </td>
         <td tabindex="1">
-            э/т
-            2-7
+            &nbsp;
         </td>
         <td tabindex="1">
-            м/в
-            8
+            метр 8
         </td>
         <td tabindex="1">
-            мдк
-            2-11
+            &nbsp;
         </td>
         <td tabindex="1">
-            ф-ра
+            &nbsp;
         </td>
-        <td tabindex="1">&nbsp;</td>
         <td tabindex="1">
-            оит
-            18
+            &nbsp;
         </td>
-        <td tabindex="1">&nbsp;</td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            мдк 2-11
+        </td>
     </tr>
     <tr>
         <td tabindex="1">
             8
         </td>
         <td tabindex="1">
-            сл.д
-            8
-        </td>
-        <td tabindex="1">
-            мдк
-            2-11
-        </td>
-        <td tabindex="1">
-            хим
-            20
-        </td>
-        <td tabindex="1">
-        <td tabindex="1">
-            р.яз
-            9
-        </td>
-        <td tabindex="1">
-            общ
-            14
-        </td>
-        <td tabindex="1">
-            биол
-            21
-        </td>
-        <td tabindex="1">
-            инф1
-            18
-        </td>
-        <td tabindex="1">
-            физ
-            13
-        </td>
-        <td tabindex="1">
             а
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            общ 14
         </td>
         <td tabindex="1">
             ф-ра
@@ -693,24 +562,31 @@ title monday
         <td tabindex="1">
             а
         </td>
-        <td tabindex="1">&nbsp;</td>
         <td tabindex="1">
-            э/т
-            2-7
+            инф 1,2 18
         </td>
         <td tabindex="1">
-            оит2
-            17
+            &nbsp;
         </td>
         <td tabindex="1">
-            мдк
-            2-11
+            &nbsp;
         </td>
-        <td tabindex="1">&nbsp;</td>
-        <td tabindex="1">&nbsp;</td>
         <td tabindex="1">
-            ф-ра
+            &nbsp;
         </td>
-        <td tabindex="1">&nbsp;</td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            &nbsp;
+        </td>
+        <td tabindex="1">
+            бж 5
+        </td>
     </tr>
-</tbody>

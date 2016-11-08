@@ -1,1 +1,1 @@
-{}
+{ "env": { "default": { "db": "https://couch.2d-it.ru/new" } } }

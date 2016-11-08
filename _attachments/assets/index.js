@@ -1,5 +1,5 @@
 
-var $db = $.couch.db("tpl");
+var $db = $.couch.db("new");
 
 
 var tomorrow=Date.today().add(1).days();
@@ -76,9 +76,10 @@ function loadDoc() {
     }, // End success, we have a Doc
     // If there is no CouchDB document with that ID then we'll need to create it before we can attach a file to it.
     error: function(status) {
-      $db.copyDoc(moment(tomorrow).format("dddd").toLowerCase(), {
+      $db.copyDoc(moment.unix(_day).format("dddd").toLowerCase(), {
         success: function(data) {
           console.log(data);
+          loadDoc();
         }
       }, {
           beforeSend: function(xhr) {

@@ -9,22 +9,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/pickmeup.css" type="text/css" />
     <link href="css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="js/trumbowyg/dist/ui/trumbowyg.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <!-- jQuery js -->
+    <script src="js/json2/json2.js"></script>
+    <script src="js/jquery/dist/jquery.js"></script>
+    <script src="js/jquery.couch/jquery.couch.js"></script>
+    <script src="js/base64/base64.js" charset="utf-8"></script>
+    <!-- <script src="js/jquery-couch/jquery.couch.js" charset="utf-8"></script> -->
+    <script src="js/jquery-form/jquery.form.js?0.9.0"></script>
+    <script src="js/jquery.tmpl.js" charset="utf-8"></script>
+    <script src="js/mindmup-editabletable.js" charset="utf-8"></script>
+    <script src="js/jquery.pickmeup.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/pickmeup.js"></script>
 
-    <!-- jQuery assets -->
-    <script src="/_utils/script/json2.js"></script>
-    <script src="/_utils/script/jquery.js?1.2.6"></script>
-    <script src="/_utils/script/jquery.couch.js?0.8.0"></script>
-    <script src="/_utils/script/base64.js" charset="utf-8"></script>
-    <!-- <script src="assets/jquery-couch/jquery.couch.js" charset="utf-8"></script> -->
-    <script src="/_utils/script/jquery.form.js?0.9.0"></script>
-    <script src="assets/jquery.tmpl.js" charset="utf-8"></script>
-    <script src="assets/mindmup-editabletable.js" charset="utf-8"></script>
-    <script src="assets/jquery.pickmeup.js" charset="utf-8"></script>
-    <script type="text/javascript" src="assets/pickmeup.js"></script>
-
-    <script src="assets/date.js" charset="utf-8"></script>
-    <script src="assets/moment.min.js" charset="utf-8"></script>
-
+    <script src="js/DateJS/build/date-ru-RU.js" charset="utf-8"></script>
+    <script src="js/moment.min.js" charset="utf-8"></script>
+    <script src="js/trumbowyg/dist/trumbowyg.min.js"></script>
+    <script src="js/trumbowyg/dist/langs/ru.min.js" charset="utf-8"></script>
+    <script src="js/init.js" charset="utf-8"></script>
 
     <script type="text/javascript">
 
@@ -99,13 +102,10 @@
 
     <ul id="list"></ul>
     <script type="text/javascript">
-    $db.allDocs({
-     success: function (data) {
-       console.log(data);
-       $("#documents").tmpl(data.rows).appendTo('#list');
-     }
+    $('textarea').trumbowyg({
+        lang: 'ru'
     });
     </script>
-    <script src="assets/index.js" charset="utf-8"></script>
+    <script src="js/index.js" charset="utf-8"></script>
   </body>
 </html>

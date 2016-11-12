@@ -5,7 +5,5 @@
  * @param {object} doc - Document Object.
  */
 function(doc) {
-  if (doc.type == "post") {
-      emit([doc._id], doc);
-    }
-  }
+   emit(doc.utc,null);
+}

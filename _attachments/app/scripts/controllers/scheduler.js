@@ -9,7 +9,16 @@ var db_name = 'gbook';
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('SchedulerCtrl', function ($scope, $filter, cornercouch) {
+  .controller('SchedulerCtrl', function ($scope, $sce, $filter, cornercouch) {
+    var tomorrow=Date.today().add(1).days();
+    if(tomorrow.is().sunday()||tomorrow.is().saturday()) {
+      tomorrow=Date.today().next().monday();
+    }
+    //console.log();
+    var timestamp=moment(tomorrow).unix();
+    var _day=moment.unix(timestamp).format("dddd").toLowerCase();
+    console.log(timestamp)
+
     $scope.server = cornercouch("http://localhost:5984", "GET");
 
     // I think
@@ -28,6 +37,25 @@ angular.module('angularTestApp')
         //descending: true,
         limit: 8
     });
+    $scope._tpl=$scope.gbookdb.getDoc(_day);
+    $scope._tpl._id=timestamp.toString();
+    console.log(_day);
+    console.log($scope._tpl);
+    $scope.nDoc = $scope.gbookdb.newDoc($scope._tpl);
+    //$scope.nDov.save();
+    //$scope.nDoc._id = timestamp;
+    //$scope.nDoc.save().error(setError);
+    $scope.details = $scope.gbookdb.getDoc(timestamp.toString());
+
+    $scope.change= function(data) {
+      console.log("change");
+      $scope.details.data=data;
+      $scope.details._id=timestamp.toString();
+      console.log($scope.details);
+      $scope.details.save().success(function() {
+        console.log("success");
+      });
+    };
 
 
     $scope.isAuthenticated = function() {

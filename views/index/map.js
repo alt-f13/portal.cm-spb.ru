@@ -5,7 +5,7 @@
  * @param {object} doc - Document Object.
  */
 function(doc) {
-  if (doc.type == "post") {
+  if (doc.type == "schedule") {
       emit([doc._id], doc);
     }
   }

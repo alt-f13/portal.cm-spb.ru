@@ -31,6 +31,8 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-simplecouch/angular.simplecouch.js',
       'bower_components/CornerCouch/angular-cornercouch.js',
+      'bower_components/moment/moment.js',
+      'bower_components/DateJS/build/production/date.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

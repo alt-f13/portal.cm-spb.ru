@@ -10,7 +10,7 @@ var db_name = 'gbook';
  */
 angular.module('angularTestApp')
   .controller('MainCtrl', function ($scope, $filter, cornercouch) {
-    $scope.server = cornercouch("http://localhost:5984", "GET");
+    $scope.server = cornercouch("https://admin:sdc888@couch.2d-it.ru", "GET");
 
     // I think
     $scope.server.session().success(function(data) {

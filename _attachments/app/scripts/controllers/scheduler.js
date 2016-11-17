@@ -9,7 +9,7 @@ var db_name = 'gbook';
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('SchedulerCtrl', function ($scope, $sce, $filter, cornercouch) {
+  .controller('SchedulerCtrl', function ($scope, $sce, $filter, couchdb) {
     var tomorrow=Date.today().add(1).days();
     if(tomorrow.is().sunday()||tomorrow.is().saturday()) {
       tomorrow=Date.today().next().monday();
@@ -19,41 +19,63 @@ angular.module('angularTestApp')
     var _day=moment.unix(timestamp).format("dddd").toLowerCase();
     console.log(timestamp)
 
-    $scope.server = cornercouch("http://localhost:5984", "GET");
+    //$scope.server = cornercouch("https://admin:sdc888@couch.2d-it.ru", "GET");
+    //$scope.server = cornercouch("http://localhost:5984", "GET");
+    $scope.server = couchdb;
+    console.log($scope.server);
 
     // I think
-    $scope.server.session().success(function(data) {
+    $scope.server.user.session(function(data) {
        if ( $scope.server.userCtx && $scope.server.userCtx.name ) {
           $scope.showInfo = true;
           $scope.getInfos();
        }
     });
-    //$scope.gbookdb = $scope.server.
-    $scope.gbookdb = $scope.server.getDB(db_name);
-    $scope.gbookdb.getInfo();
-    $scope.newentry = $scope.gbookdb.newDoc();
-    $scope.gbookdb.query('scheduler', "index", {
+    $scope.gbookdb = $scope.server;
+    //$scope.gbookdb = $scope.server.getDB(db_name);
+    //$scope.gbookdb.getInfo();
+    //$scope.newentry = $scope.gbookdb.newDoc();
+    $scope.gbookdb.view('scheduler', 'index', {
         //include_docs: true,
         //descending: true,
         limit: 8
     });
-    $scope._tpl=$scope.gbookdb.getDoc(_day);
-    $scope._tpl._id=timestamp.toString();
-    console.log(_day);
-    console.log($scope._tpl);
-    $scope.nDoc = $scope.gbookdb.newDoc($scope._tpl);
+    //$scope.tpl=
+    //$scope._tpl._id=timestamp.toString();
+    //console.log($scope.tpl);
+    //$scope.tpl._id=timestamp.toString();
+    //$scope.server.doc.put($scope.tpl);
+
+    //console.log($scope.tpl.$$state);
+
+    //console.log($scope.nDoc);
     //$scope.nDov.save();
     //$scope.nDoc._id = timestamp;
     //$scope.nDoc.save().error(setError);
-    $scope.details = $scope.gbookdb.getDoc(timestamp.toString());
+    $scope.gbookdb.doc.get(timestamp.toString(), function(data) {
+        $scope.details = data;
+        console.log(data);
+    })
+      .error(function() {
+        console.log("error");
+        $scope.gbookdb.doc.get(_day, function(data) {
+          data._rev = undefined;
+          console.log(data);
+          $scope.details = data;
+          $scope.details._id=timestamp.toString();
+          $scope.server.doc.put($scope.details);
+        });
+      });
 
     $scope.change= function(data) {
       console.log("change");
       $scope.details.data=data;
-      $scope.details._id=timestamp.toString();
-      console.log($scope.details);
-      $scope.details.save().success(function() {
-        console.log("success");
+      //$scope.details._id=timestamp.toString();
+      $scope.server.doc.post($scope.details, function(data) {
+        $scope.details._rev = data.rev;
+        console.log(data);
+        console.log($scope.details);
+
       });
     };
 

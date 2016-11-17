@@ -18,9 +18,9 @@ var $app = angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'CornerCouch'
+    'SimpleCouch'
   ])
-  .config(function ($routeProvider,$httpProvider) {
+  .config(function ($routeProvider,$httpProvider,couchConfigProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -40,4 +40,8 @@ var $app = angular
       .otherwise({
         redirectTo: '/'
       });
+    couchConfigProvider.setServer('http://127.0.0.1:5984');
+    couchConfigProvider.setDB('gbook');
+    //couchConfigProvider.setMethod('method GET/JSONP');
+
   });

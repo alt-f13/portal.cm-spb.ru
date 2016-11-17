@@ -10,8 +10,8 @@ angular.module('angularTestApp')
   .directive('editableTable', function () {
     return {
       link: function postLink(scope, element, attrs) {
-        console.log(element);
-        scope.change();
+        //console.log(element);
+        //scope.change();
         element.editableTableWidget();
         //console.log($(this));
         element.on("change", function(event) {

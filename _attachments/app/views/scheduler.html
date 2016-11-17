@@ -60,7 +60,18 @@
            </div>
         </div>
      </div>
-     <div pickmeup></div>
+     <div class="row">
+       <div class="col-md-6">
+         <datepicker>
+           <input ng-model="day" type="text"/>
+         </datepicker>
+      </div>
+
+       <div class="col-md-6">
+         <div ui-date="dateOptions" name="DateOfBirth"></div>
+
+       </div>
+     </div>
      <h3>Guest book entries <small>(click for detail)</small></h3><button ng-show="showInfo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newEntryModal">New Entry</button>
    <table editable-Table class="table table-hover" style="border-collapse:collapse;" ng-bind-html="details.data|trust" ng-change="change()" ng-model="details.data">
    </table>

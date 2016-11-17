@@ -9,15 +9,23 @@ var db_name = 'gbook';
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('SchedulerCtrl', function ($scope, $sce, $filter, couchdb) {
-    var tomorrow=Date.today().add(1).days();
-    if(tomorrow.is().sunday()||tomorrow.is().saturday()) {
-      tomorrow=Date.today().next().monday();
+  .controller('SchedulerCtrl', function ($scope, $sce, $filter, couchdb, $routeParams, $location) {
+    console.log($routeParams.day);
+
+    if($routeParams.day ===  undefined) {
+      var tomorrow=Date.today().add(1).days();
+      if(tomorrow.is().sunday()||tomorrow.is().saturday()) {
+        tomorrow=Date.today().next().monday();
+      }
+      $scope._day = moment(tomorrow).unix().toString();
+      console.log( $scope._day)
+      $location.path("/"+ $scope._day);
+    }else {
+      console.log($routeParams);
+      $scope._day = $routeParams.day;
     }
-    //console.log();
-    var timestamp=moment(tomorrow).unix();
-    var _day=moment.unix(timestamp).format("dddd").toLowerCase();
-    console.log(timestamp)
+    $scope._day_literal = moment.unix($scope._day).format("dddd").toLowerCase();
+
 
     //$scope.server = cornercouch("https://admin:sdc888@couch.2d-it.ru", "GET");
     //$scope.server = cornercouch("http://localhost:5984", "GET");
@@ -52,17 +60,17 @@ angular.module('angularTestApp')
     //$scope.nDov.save();
     //$scope.nDoc._id = timestamp;
     //$scope.nDoc.save().error(setError);
-    $scope.gbookdb.doc.get(timestamp.toString(), function(data) {
+    $scope.gbookdb.doc.get($scope._day, function(data) {
         $scope.details = data;
         console.log(data);
     })
       .error(function() {
         console.log("error");
-        $scope.gbookdb.doc.get(_day, function(data) {
+        $scope.gbookdb.doc.get($scope._day_literal, function(data) {
           data._rev = undefined;
           console.log(data);
           $scope.details = data;
-          $scope.details._id=timestamp.toString();
+          $scope.details._id=$scope._day;
           $scope.server.doc.put($scope.details);
         });
       });

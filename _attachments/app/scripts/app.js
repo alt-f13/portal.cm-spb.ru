@@ -18,24 +18,20 @@ var $app = angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'SimpleCouch'
+    'SimpleCouch',
+    '720kb.datepicker'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/scheduler', {
+      .when('/:day?', {
         templateUrl: 'views/scheduler.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'SchedulerCtrl',
+        controllerAs: 'scheduler'
       })
       .otherwise({
         redirectTo: '/'

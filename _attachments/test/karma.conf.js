@@ -33,7 +33,7 @@ module.exports = function(config) {
       'bower_components/CornerCouch/angular-cornercouch.js',
       'bower_components/moment/moment.js',
       'bower_components/DateJS/build/production/date.min.js',
-      'bower_components/pickmeup/dist/pickmeup.min.js',
+      'bower_components/angularjs-datepicker/dist/angular-datepicker.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

@@ -3,6 +3,12 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 @import "pickmeup.scss";
+.highlight:not(.pmu-today) {
+    background: #8FC490;
+}
+.highlight:not(.pmu-today):hover {
+    background: #136a9f !important;
+}
 
 .browsehappy {
   margin: 0.2em 0;

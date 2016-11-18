@@ -6,6 +6,6 @@
  */
 function(doc) {
   if (doc.type == "schedule") {
-      emit([doc._id], doc);
+      emit([doc._id], '');
     }
   }

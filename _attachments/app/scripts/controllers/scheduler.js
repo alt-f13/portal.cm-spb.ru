@@ -48,11 +48,7 @@ angular.module('angularTestApp')
     //$scope.gbookdb = $scope.server.getDB(db_name);
     //$scope.gbookdb.getInfo();
     //$scope.newentry = $scope.gbookdb.newDoc();
-    $scope.gbookdb.view('scheduler', 'index', {
-        //include_docs: true,
-        //descending: true,
-        limit: 8
-    });
+
     //$scope.tpl=
     //$scope._tpl._id=timestamp.toString();
     //console.log($scope.tpl);
@@ -73,10 +69,14 @@ angular.module('angularTestApp')
         console.log("error");
         $scope.gbookdb.doc.get($scope._day_literal, function(data) {
           data._rev = undefined;
+          data.type = "schedule"
           console.log(data);
           $scope.details = data;
           $scope.details._id=$scope._day;
-          $scope.server.doc.put($scope.details);
+          $scope.server.doc.put($scope.details, function(data) {
+            $scope.details._rev=data.rev;
+            console.log(data);
+          });
         });
       });
 

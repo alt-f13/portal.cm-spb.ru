@@ -30,7 +30,6 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-simplecouch/angular.simplecouch.js',
-      'bower_components/CornerCouch/angular-cornercouch.js',
       'bower_components/moment/moment.js',
       'bower_components/DateJS/build/production/date.min.js',
       'bower_components/angularjs-datepicker/dist/angular-datepicker.min.js',

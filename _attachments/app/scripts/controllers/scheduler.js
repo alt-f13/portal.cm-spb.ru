@@ -31,7 +31,12 @@ angular.module('angularTestApp')
     //$scope.server = cornercouch("http://localhost:5984", "GET");
     $scope.server = couchdb;
     console.log($scope.server);
-
+    $scope.location = function (_day) {
+      console.log(_day);
+      $routeParams.day="_day"
+      $location.path("/"+ _day);
+      $scope.$apply
+    }
     // I think
     $scope.server.user.session(function(data) {
        if ( $scope.server.userCtx && $scope.server.userCtx.name ) {

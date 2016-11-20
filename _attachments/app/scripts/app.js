@@ -20,7 +20,7 @@ var $app = angular
     'ngTouch',
     'SimpleCouch',
     '720kb.datepicker',
-    'angularFileUpload'
+    'ngFileUpload'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider) {
     $routeProvider
@@ -33,6 +33,11 @@ var $app = angular
         templateUrl: 'views/post.html',
         controller: 'PostCtrl',
         controllerAs: 'post'
+      })
+      .when('/posts', {
+        templateUrl: 'views/posts.html',
+        controller: 'PostsCtrl',
+        controllerAs: 'posts'
       })
       .when('/:day?', {
         templateUrl: 'views/scheduler.html',

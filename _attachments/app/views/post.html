@@ -22,69 +22,25 @@
    <button class='btn btn-primary' type="submit">Submit</button>
 
 </form>
-<div class="row">
+<ul ng-repeat="(name,info) in details._attachments">
+  <li><img src="{{docUrl}}{{name}}" alt=""></li>
+</ul>
 
-  <div class="col-md-3">
-
-      <h3>Select files</h3>
-
-      <div ng-show="uploader.isHTML5">
-          <!-- 3. nv-file-over uploader="link" over-class="className" -->
-          <div class="well my-drop-zone" nv-file-over="" uploader="uploader">
-              Base drop zone
-          </div>
-
-          <!-- Example: nv-file-drop="" uploader="{Object}" options="{Object}" filters="{String}" -->
-          <div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }">
-              <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
-                  Another drop zone with its own settings
-              </div>
-          </div>
-      </div>
-
-      <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
-      <input type="file" nv-file-select="" uploader="uploader" multiple=""><br>
-
-  </div>
-
-  <div class="col-md-9" style="margin-bottom: 40px">
-      <h2>Uploads only images (with canvas preview)</h2>
-      <h3>The queue</h3>
-      <p class="ng-binding">Queue length: 0</p>
-
-      <table class="table">
-          <thead>
-              <tr>
-                  <th width="50%">Name</th>
-                  <th ng-show="uploader.isHTML5">Size</th>
-                  <th ng-show="uploader.isHTML5">Progress</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-              </tr>
-          </thead>
-          <tbody>
-              <!-- ngRepeat: item in uploader.queue -->
-          </tbody>
-      </table>
-
-      <div>
-          <div>
-              Queue progress:
-              <div class="progress" style="">
-                  <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }" style="width: 0%;"></div>
-              </div>
-          </div>
-          <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length" disabled="disabled">
-              <span class="glyphicon glyphicon-upload"></span> Upload all
-          </button>
-          <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading" disabled="disabled">
-              <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
-          </button>
-          <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length" disabled="disabled">
-              <span class="glyphicon glyphicon-trash"></span> Remove all
-          </button>
-      </div>
-
-  </div>
-
+<input type="text" ng-model="username"><br/><br/>
+    watching model:
+    <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
+    on file change multiple:
+    <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
+    Drop File:
+    <div ngf-drop ngf-select ng-model="files" class="drop-box"
+        ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+        accept="image/*,application/pdf"
+        ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    Files:
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+    </ul>
+    Upload Log:
+    <pre>{{log}}</pre>
 </div>

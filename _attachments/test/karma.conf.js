@@ -34,6 +34,7 @@ module.exports = function(config) {
       'bower_components/DateJS/build/production/date.min.js',
       'bower_components/angularjs-datepicker/dist/angular-datepicker.min.js',
       'bower_components/angular-file-upload/dist/angular-file-upload.min.js',
+      'bower_components/ng-file-upload/ng-file-upload.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

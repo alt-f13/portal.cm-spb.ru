@@ -19,7 +19,8 @@ var $app = angular
     'ngSanitize',
     'ngTouch',
     'SimpleCouch',
-    '720kb.datepicker'
+    '720kb.datepicker',
+    'angularFileUpload'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider) {
     $routeProvider
@@ -27,6 +28,11 @@ var $app = angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      })
+      .when('/post/:id?', {
+        templateUrl: 'views/post.html',
+        controller: 'PostCtrl',
+        controllerAs: 'post'
       })
       .when('/:day?', {
         templateUrl: 'views/scheduler.html',

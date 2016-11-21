@@ -20,7 +20,8 @@ var $app = angular
     'ngTouch',
     'SimpleCouch',
     '720kb.datepicker',
-    'ngFileUpload'
+    'ngFileUpload',
+    'wysiwyg.module'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider) {
     $routeProvider

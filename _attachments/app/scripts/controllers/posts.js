@@ -21,14 +21,15 @@ angular.module('angularTestApp')
       $scope.edit = function(id) {
         console.log(id);
         $scope.details = {};
-        $scope.details._id = id;
+        $scope.details._id = id.toString();
+        $scope.details.id=$scope.details._id;
+        $scope.details.type="post";
         $scope.docUrl=$scope.$db.config.getServer()+"/"+$scope.$db.db.getName()+"/"+id+"/";
         $scope.$db.doc.get($scope.details._id, function(data) {
             $scope.details = data;
             console.log(data);
-            $scope.showModal = true;
-
-        });
+        })
+        $scope.showModal = true;
       }
       $scope.open = function() {
         $scope.showModal = true;

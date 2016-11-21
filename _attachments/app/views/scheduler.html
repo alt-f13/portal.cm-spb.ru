@@ -62,8 +62,13 @@
      </div>
      <div class="row">
        <div class="col-md-6">
-         <datepicker>
-           <input ng-model="day" type="text"/>
+         <datepicker date-format="dd/MM/yyyy" >
+           <div class="input-group">
+               <input class="form-control" type="text" ng-model="details.date" placeholder="Choose a date"/>
+               <span class="input-group-addon" style="cursor: pointer">
+               <i class="fa fa-lg fa-calendar"></i>
+               </span>
+           </div>
          </datepicker>
       </div>
 

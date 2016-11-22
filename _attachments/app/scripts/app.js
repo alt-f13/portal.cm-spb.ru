@@ -21,7 +21,7 @@ var $app = angular
     'SimpleCouch',
     '720kb.datepicker',
     'ngFileUpload',
-    'wysiwyg.module'
+    'textAngular'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider) {
     $routeProvider

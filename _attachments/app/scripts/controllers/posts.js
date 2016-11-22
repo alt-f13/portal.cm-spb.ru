@@ -71,20 +71,33 @@ angular.module('angularTestApp')
     $scope.log = '';
 
     $scope.upload = function (files) {
+      var _rev=$scope.details._rev;
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
               var file = files[i];
               console.log(file);
               if (!file.$error) {
-                $scope.$db.attach.put($scope.details, file, {}, function(data) {
-                  console.log(data);
-                  $scope.details._rev = data.rev;
-                });
+
+
+                var count=0;
+                while (_rev == $scope.details._rev) {
+                    setTimeout('console.log(++count)', 1000);
+
+                }
                 }
               }
             }
 
     };
+    $scope.db_attach = function(files, i) {
+      $scope.$db.attach.put($scope.details, files[i], {}, function(data) {
+        console.log(data);
+        $scope.details._rev = data.rev;
+        ++i;
+        console.log(i);
+        $scope.db_attach(files, i);
+      });
+    }
 
 
 

@@ -34,15 +34,18 @@
 
           </div>
     </form>
-    <ul ng-repeat="(name,info) in details._attachments">
-      <li><img src="{{docUrl}}{{name}}" alt=""></li>
+    <ul class="attachments" ng-repeat="(name,info) in details._attachments" >
+      <li ng-switch="info.content_type=='image/png'||info.content_type=='image/jpeg'">
+        <img ng-switch-when="true" ng-switch-when-separator="|" class="thumbnail" src="{{docUrl}}{{name}}" alt="">
+        {{info.content_type}}
+      </li>
     </ul>
 
     <input type="text" ng-model="username"><br/><br/>
         watching model:
         <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
         on file change multiple:
-        <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
+        <div class="button" ngf-select="db_attach($files, 0)" ngf-multiple="true">Select File</div>
         Drop File:
         <div ngf-drop ngf-select ng-model="files" class="drop-box"
             ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
@@ -53,8 +56,6 @@
         <ul>
             <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
         </ul>
-        Upload Log:
-        <pre>{{log}}</pre>
     </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="close()">Close</button>

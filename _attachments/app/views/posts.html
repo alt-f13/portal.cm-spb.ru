@@ -1,74 +1,75 @@
-<div>
-
-</div>
-<a ng-click="edit(uuid)" role="button" class="btn btn-primary">Новый пост</a>
-<ul ng-repeat="post in posts">
-  <li><a ng-click="edit(post.id)">{{post.value.date}} {{post.value.title}}</a></li>
-</ul>
-
-<!-- Modal -->
-<div ng-show="showModal" class="">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-
-        <form role="form" name="formdetails" class="offset1 span9" ng-submit="submitEntry()">
-           <fieldset>
-              <div class="form-group">
-                 <label for="detailsAlias" >Название</label>
-                 <input type="text" id="mewEntryAlias" class="span4 form-control" ng-model="details.title" required>
-              </div>
-              <div class="form-group">
-                 <label for="detailsEmail">Дата</label>
-                 <datepicker  date-format="dd/MM/yyyy">
-                   <input ng-model="details.date" type="text"/>
-                 </datepicker>
-              </div>
-              <div class="form-group">
-                 <label for="detailsSubject">теги</label>
-                 <input type="text" id="detailsSubject" class="span9 form-control" ng-model="details.tags" required>
-              </div>
-              <div class="form-group">
-                 <label for="detailsBody">Послание</label>
-                 <div text-angular ng-model="details.body"></div>
-
-              </div>
-           </fieldset>
-           <button class="btn" data-dismiss="modal">Close</button>
-           <button class='btn btn-primary' type="submit">Submit</button>
-
-        </form>
-        <ul ng-repeat="(name,info) in details._attachments">
-          <li><img src="{{docUrl}}{{name}}" alt=""></li>
-        </ul>
-
-        <input type="text" ng-model="username"><br/><br/>
-            watching model:
-            <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
-            on file change multiple:
-            <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
-            Drop File:
-            <div ngf-drop ngf-select ng-model="files" class="drop-box"
-                ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
-                accept="image/*,application/pdf"
-                ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
-            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-            Files:
-            <ul>
-                <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
-            </ul>
-            Upload Log:
-            <pre>{{log}}</pre>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+<script type="text/ng-template" id="edit.html">
+  <div class="modal-header">
+    <button type="button" class="close"  ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
   </div>
+  <div class="modal-body">
+
+    <form role="form" name="formdetails" class="offset1 span9" ng-submit="submitEntry()">
+      <div class="row">
+        <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">#</span>
+                <input type="text" class="form-control" placeholder="Название" aria-describedby="basic-addon1" ng-model="details.title">
+              </div>
+            </div>
+        <div class="col-md-6">
+            <div class="input-group">
+              <span class="input-group-addon" style="cursor: pointer">
+                  <i class="fa fa-lg fa-calendar"></i>
+              </span>
+              <datepicker date-format="dd/MM/yyyy">
+                <input class="form-control" type="text" ng-model="details.date" placeholder="Choose a date"/>
+              </datepicker>
+
+          </div>
+      </div>
+      </div>
+
+
+
+          <div class="form-group">
+             <label for="detailsBody">Послание</label>
+             <div text-angular ng-model="details.body"></div>
+
+          </div>
+    </form>
+    <ul ng-repeat="(name,info) in details._attachments">
+      <li><img src="{{docUrl}}{{name}}" alt=""></li>
+    </ul>
+
+    <input type="text" ng-model="username"><br/><br/>
+        watching model:
+        <div class="button" ngf-select ng-model="file" ngf-multiple="false">Select File</div>
+        on file change multiple:
+        <div class="button" ngf-select="upload($files)" ngf-multiple="true">Select File</div>
+        Drop File:
+        <div ngf-drop ngf-select ng-model="files" class="drop-box"
+            ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+            accept="image/*,application/pdf"
+            ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+        Files:
+        <ul>
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}</li>
+        </ul>
+        Upload Log:
+        <pre>{{log}}</pre>
+    </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="close()">Close</button>
+    <button type="button" class="btn btn-primary" ng-click="submitEntry()">Save changes</button>
+  </div>
+</script>
+
+
+
+<a ng-click="edit(uuid)" role="button" class="btn btn-success">Новый пост</a>
+<div class="list-group" ng-repeat="post in posts">
+  <a class="list-group-item" ng-click="edit(post.id)">
+    <h4 class="list-group-item-heading">{{post.value.date}} {{post.value.title}}</h4>
+    <p class="list-group-item-text">{{post.value.description}}</p>
+
+  </a>
+
 </div>

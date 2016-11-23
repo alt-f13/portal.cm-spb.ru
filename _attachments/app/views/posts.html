@@ -1,8 +1,18 @@
 <script type="text/ng-template" id="edit.html">
   <div class="modal-header">
-    <button type="button" class="btn btn-primary" ng-click="submitEntry()">Save changes</button>
-    <button type="button" class="close"  ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+    <div class="row">
+      <div class="col-md-10">
+        <h4 class="modal-title" id="myModalLabel">Редактирование новости:</h4>
+      </div>
+      <div class="col-md-1">
+        <button type="button" class="btn btn-primary" ng-click="submitEntry()">Сохранить</button>
+      </div>
+      <div class="col-md-1">
+        <button type="button" class="close"  ng-click="close() " aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+
+    </div>
+
   </div>
   <div class="modal-body">
 
@@ -13,7 +23,7 @@
             <div class="row">
               <div class="col-md-6">
                     <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon1">#</span>
+                      <span class="input-group-addon" id="basic-addon1">Название</span>
                       <input type="text" class="form-control" placeholder="Название" aria-describedby="basic-addon1" ng-model="details.title">
                     </div>
                   </div>
@@ -34,22 +44,30 @@
 
                 <div class="form-group">
                    <label for="detailsBody">Послание</label>
-                   <div text-angular ng-model="details.body"></div>
+                   <div text-angular ng-model="details.body" ></div>
+
+                </div>
+                <div class="form-group">
+                   <label for="detailsBody">Спойлер</label>
+                   <div text-angular ng-model="details.description"  ta-toolbar="[['bold', 'italics', 'underline'],['ul', 'ol','quote'],['h1','h2','h3'],['insertImage']]"></div>
 
                 </div>
           </form>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2 attachments"  ngf-drop ng-model="files"
+          ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+          accept="image/*,application/pdf"
+          ngf-pattern="'image/*,application/pdf'">
         <ul>
           <li>
 
                     <div  ngf-drop ngf-select ng-model="files" class="drop-box"
                         ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
                         accept="image/*,application/pdf"
-                        ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
+                        ngf-pattern="'image/*,application/pdf'">Drag-drop сюда или нажмите для загрузки</div>
                     <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
           </li>
-          <li class="attachments" ng-repeat="(name,info) in details._attachments" >
+          <li ng-repeat="(name,info) in details._attachments" >
             <div class="thumbnail" ng-switch="info.content_type=='image/png'||info.content_type=='image/jpeg'">
               <img ng-switch-when="true" ng-switch-when-separator="|" src="{{docUrl}}{{name}}" alt="">
               <div class="caption">
@@ -63,8 +81,8 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="close()">Close</button>
-    <button type="button" class="btn btn-primary" ng-click="submitEntry()">Save changes</button>
+    <button type="button" class="btn btn-default" ng-click="close()">Закрыть</button>
+    <button type="button" class="btn btn-primary" ng-click="submitEntry()">Сохранить</button>
   </div>
 </script>
 
@@ -74,7 +92,7 @@
 <div class="list-group" ng-repeat="post in posts">
   <a class="list-group-item" ng-click="edit(post.id)">
     <h4 class="list-group-item-heading">{{post.value.date}} {{post.value.title}}</h4>
-    <p class="list-group-item-text">{{post.value.description}}</p>
+    <p class="list-group-item-text" ng-bind-html="post.value.description|trust"></p>
 
   </a>
 

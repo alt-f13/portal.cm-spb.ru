@@ -5,11 +5,21 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "font-awesome/scss/font-awesome.scss";
 // endbower
 @import "pickmeup.scss";
+
+.modal-lg {
+  width: 80% !important;
+}
+
 .attachments {
+
+
   .thumbnail {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 100px;
+    max-height: 80px;
+    overflow: hidden;
+
   }
+
 }
 
 

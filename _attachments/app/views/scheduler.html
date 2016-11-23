@@ -1,76 +1,7 @@
 <div class="jumbotron">
   <div class="container-fluid" ng-controller="SchedulerCtrl">
-     <div class="navbar navbar-default" role="navigation">
-           <div class="navbar-header">
-              <a class="navbar-brand" href="#">Stuff</a>
-           </div>
-           <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                 <li><a ng-show="showInfo" data-toggle="modal" href="#infoModal" data-target="#infoModal">System Info</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                 <li><a ng-show="showInfo" ng-click="userLogout()" href="#">Logout</a></li>
-                 <li><a ng-show="!showInfo" data-toggle="modal" href="#loginModal" data-target="#loginModal">Login</a></li>
-              </ul>
-           </div>
-     </div>
-     <div class="alert alert-error" ng-show="errordata">{{ errordata | json }}</div>
-     <div id="loginModal" my-modal class="modal fade">
-        <div class="modal-dialog">
-           <div class="modal-content">
-              <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                 <h4>Login form</h4>
-              </div>
-              <div class="modal-body">
-                 <form class='form-signin' name='loginForm' ng-submit="submitLogin()">
-                    <div class="form-group">
-                       <label for="loginformUser">Login Name</label>
-                       <input id="loginformUser" type='text' name='user' ng-model='loginUser' class="form-control" placeholder="Login Name" required>
-                    </div>
-                    <div class="form-group">
-                       <label for="loginformPass">Password</label>
-                       <input id="loginformPass" type='password' name='pass' ng-model='loginPass' class="form-control" placeholder="Password" required>
-                    </div>
-                    <div>
-                       <button class="btn" data-dismiss="modal">Close</button>
-                       <button class='btn btn-primary' type="submit">Login</button>
-                    </div>
-                 </form>
-              </div>
-           </div>
-        </div>
-     </div>
-     <div id="infoModal" class="modal fade">
-        <div class="modal-dialog">
-           <div class="modal-content niceBlue">
-              <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                 <h4>CouchDB Connection</h4>
-              </div>
-              <div class="modal-body">
-                 <div>
-                    <br><br>
-                    <pre>server.userCtx = {{ server.userCtx | json }}</pre>
-                    <pre>server.info = {{ server.info | json }}</pre>
-                    <pre>server.userDoc = {{ server.userDoc | json }}</pre>
-                    <pre>gbookdb.info = {{ gbookdb.info | json }}</pre>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
      <div class="row">
-       <div class="col-md-6">
-         <datepicker date-format="dd/MM/yyyy" >
-           <div class="input-group">
-               <input class="form-control" type="text" ng-model="details.date" placeholder="Choose a date"/>
-               <span class="input-group-addon" style="cursor: pointer">
-               <i class="fa fa-lg fa-calendar"></i>
-               </span>
-           </div>
-         </datepicker>
-      </div>
+
 
        <div class="col-md-6">
          <div ui-date="dateOptions" name="DateOfBirth"></div>
@@ -78,7 +9,6 @@
        </div>
      </div>
      <div pickmeup></div>
-     <h3>Guest book entries <small>(click for detail)</small></h3><button ng-show="showInfo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newEntryModal">New Entry</button>
    <table editable-Table class="table table-hover" class="table table-bordered   " style="border-collapse:collapse;" ng-bind-html="details.data|trust" ng-change="change()" ng-model="details.data">
    </table>
 

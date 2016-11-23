@@ -19,7 +19,7 @@ angular.module('angularTestApp')
       }
       $scope._day = moment(tomorrow).unix().toString();
       console.log( $scope._day)
-      $location.path("/"+ $scope._day);
+      $location.path("/scheduler/"+ $scope._day);
     }else {
       console.log($routeParams);
       $scope._day = $routeParams.day;

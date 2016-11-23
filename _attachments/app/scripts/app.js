@@ -41,13 +41,13 @@ var $app = angular
         controller: 'PostsCtrl',
         controllerAs: 'posts'
       })
-      .when('/:day?', {
+      .when('/scheduler/:day?', {
         templateUrl: 'views/scheduler.html',
         controller: 'SchedulerCtrl',
         controllerAs: 'scheduler'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/posts'
       });
     couchConfigProvider.setServer('http://127.0.0.1:5984');
     couchConfigProvider.setDB('gbook');

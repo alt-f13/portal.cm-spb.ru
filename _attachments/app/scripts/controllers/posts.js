@@ -14,10 +14,13 @@ angular.module('angularTestApp')
         $scope.uuid=data.uuids;
         console.log($scope.uuid);
       });
-      $scope.$db.view('scheduler', 'posts', {}, function(data) {
-        $scope.posts=data;
-        console.log(data);
-      });
+      $scope.update_posts = function() {
+        $scope.$db.view('scheduler', 'posts', {}, function(data) {
+          $scope.posts=data;
+          console.log(data);
+        });
+      };
+      $scope.update_posts();
       $scope.edit = function(id) {
         console.log(id);
 
@@ -30,6 +33,9 @@ angular.module('angularTestApp')
                    return id;
                  }
                }
+        }).closed.then(function() {
+          $scope.update_posts();
+
         });
       }
 
@@ -45,9 +51,16 @@ angular.module('angularTestApp')
         $scope.details = data;
         console.log(data);
     });
+    $scope.updateAttachments = function() {
+      $db.doc.get($scope.details._id, function(data) {
+          $scope.details._attachments = data._attachments;
+          console.log(data._attachments);
+      });
+    };
+
+
     $scope.submitEntry = function() {
       $scope.details.type="post";
-
       console.log($scope.details);
       $scope.$db.doc.put($scope.details, function(data) {
         console.log(data);
@@ -72,31 +85,19 @@ angular.module('angularTestApp')
 
     $scope.upload = function (files) {
       var _rev=$scope.details._rev;
-        if (files && files.length) {
-            for (var i = 0; i < files.length; i++) {
-              var file = files[i];
-              console.log(file);
-              if (!file.$error) {
-
-
-                var count=0;
-                while (_rev == $scope.details._rev) {
-                    setTimeout('console.log(++count)', 1000);
-
-                }
-                }
-              }
-            }
-
+      console.log(files);
+      $scope.db_attach(files, 0);
     };
     $scope.db_attach = function(files, i) {
       $scope.$db.attach.put($scope.details, files[i], {}, function(data) {
         console.log(data);
         $scope.details._rev = data.rev;
+        $scope.updateAttachments();
         ++i;
-        console.log(i);
+        console.log(  $scope.attachments);
         $scope.db_attach(files, i);
       });
+
     }
 
 

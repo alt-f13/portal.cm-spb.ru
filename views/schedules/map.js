@@ -5,7 +5,7 @@
  * @param {object} doc - Document Object.
  */
 function(doc) {
-  if (doc.type == "schedule") {
+  if (doc.type == "schedule" && doc._id > (Math.floor(Date.now() / 1000)-86400*7)) {
       emit([doc._id], '');
     }
   }

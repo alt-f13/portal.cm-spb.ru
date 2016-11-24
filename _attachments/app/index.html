@@ -25,7 +25,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
+    <div class="header" ng-controller="MainCtrl">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -46,7 +46,8 @@
               <li class="active"><a href="#/">Новости</a></li>
               <li><a ng-href="#/scheduler/">Расписание</a></li>
               <li><a ng-href="#/links">Ссылки</a></li>
-              <li><a ng-href="#/contacts">Контакты</a></li>
+              <li><a ng-href="#" ng-click="loginModal()">Login</a></li>
+              <li><a ng-href="#" ng-click="logout()">Logout</a></li>
 
             </ul>
           </div>
@@ -71,12 +72,12 @@
       <div class="modal-body">
          <form class='form-signin' name='loginForm' ng-submit="submitLogin()">
             <div class="form-group">
-               <label for="loginformUser">Login Name</label>
-               <input id="loginformUser" type='text' name='user' ng-model='loginUser' class="form-control" placeholder="Login Name" required>
+               <label for="loginformUser">Login</label>
+               <input id="loginformUser" type='text' name='user' ng-model='username' class="form-control" placeholder="Login Name" required>
             </div>
             <div class="form-group">
                <label for="loginformPass">Password</label>
-               <input id="loginformPass" type='password' name='pass' ng-model='loginPass' class="form-control" placeholder="Password" required>
+               <input id="loginformPass" type='password' name='pass' ng-model='password' class="form-control" placeholder="Password" required>
             </div>
             <div>
                <button class="btn" data-dismiss="modal">Close</button>
@@ -84,6 +85,7 @@
             </div>
          </form>
       </div>
+
     </script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -139,6 +141,7 @@
         <script src="scripts/controllers/post.js"></script>
         <script src="scripts/directives/ngthumb.js"></script>
         <script src="scripts/controllers/posts.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <!-- endbuild -->
         <script src="scripts/mindmup-editabletable.js" charset="utf-8"></script>
 

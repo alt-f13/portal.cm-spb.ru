@@ -12,17 +12,17 @@ angular.module('angularTestApp')
       var $db = $scope.$db = couchdb;
       $db.uuid(function(data) {
         $scope.uuid=data.uuids;
-        console.log($scope.uuid);
+        //console.log($scope.uuid);
       });
       $scope.update_posts = function() {
         $scope.$db.view('scheduler', 'posts', {}, function(data) {
           $scope.posts=data;
-          console.log(data);
+          //console.log(data);
         });
       };
       $scope.update_posts();
       $scope.edit = function(id) {
-        console.log(id);
+        //console.log(id);
 
         $uibModal.open({
           templateUrl: 'edit.html',
@@ -38,11 +38,13 @@ angular.module('angularTestApp')
 
         });
       }
-
   })
-  .controller('EditCtrl', function ($scope, couchdb, $uibModalInstance, id) {
+  .controller('EditCtrl', function ($scope, couchdb, $uibModalInstance, id, $cookies) {
     var $db = $scope.$db = couchdb;
     $scope.details = {};
+    $db.user.isAuthenticated(function(data) {
+      console.log(data);
+    });
     $scope.details._id = id.toString();
     $scope.details.id=$scope.details._id;
     $scope.details.type="post";
@@ -61,6 +63,7 @@ angular.module('angularTestApp')
 
     $scope.submitEntry = function() {
       $scope.details.type="post";
+
       console.log($scope.details);
       $scope.$db.doc.put($scope.details, function(data) {
         console.log(data);

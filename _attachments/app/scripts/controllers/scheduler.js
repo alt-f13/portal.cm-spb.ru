@@ -34,7 +34,7 @@ angular.module('angularTestApp')
     $scope.location = function (_day) {
       console.log(_day);
       $routeParams.day="_day"
-      $location.path("/"+ _day);
+      $location.path("/scheduler/"+ _day);
       $scope.$apply
     }
     // I think

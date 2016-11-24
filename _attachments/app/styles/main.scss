@@ -9,9 +9,31 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 .modal-lg {
   width: 80% !important;
 }
+.modal {
+  .modal-body {
+      max-height: 80vh;
+      overflow-y: hidden;
 
+      .description {
+        max-height: 100px;
+      }
+      .text-editor {
+        height: 100%;
+        width: 100%;
+        min-height: 70vh;
+        min-width: 70vh;
+      }
+  }
+
+}
+.ta-scroll-window > .ta-bind {
+    height: auto;
+    min-height: 70vh;
+    padding: 6px 12px;
+}
 .attachments {
-
+  height: 80vh;
+  overflow: scroll;
 
   .thumbnail {
     max-width: 100px;

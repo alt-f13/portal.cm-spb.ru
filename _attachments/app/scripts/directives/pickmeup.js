@@ -13,7 +13,7 @@ angular.module('angularTestApp')
         //element.text('this is the pickmeup directive');
         //element.pickmeup();
         var _documents=new Array();
-        scope.gbookdb.view('scheduler', 'index', {}, function(data) {
+        scope.gbookdb.view('scheduler', 'schedules', {}, function(data) {
             console.log(data);
             scope.dates=data.map(function(i) {
               return i.id;

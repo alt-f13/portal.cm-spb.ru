@@ -22,7 +22,8 @@ var $app = angular
     '720kb.datepicker',
     'ngFileUpload',
     'textAngular',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngCookies'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider) {
     $routeProvider
@@ -51,6 +52,8 @@ var $app = angular
       });
     couchConfigProvider.setServer('http://127.0.0.1:5984');
     couchConfigProvider.setDB('gbook');
+    $httpProvider.defaults.withCredentials = true;
+
     //couchConfigProvider.setMethod('method GET/JSONP');
 
   });

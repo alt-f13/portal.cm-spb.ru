@@ -4,6 +4,7 @@ angular.module('SimpleCouch',[]).provider('couchConfig', {
     db : null,
     method : 'GET',
     usrCtx : { name: null, roles: [] },
+    session: null,
     // configuration method for setting the server url
     setServer: function(serverUrl) {
         this.serverUrl = serverUrl;

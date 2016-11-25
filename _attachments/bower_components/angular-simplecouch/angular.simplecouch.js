@@ -240,7 +240,7 @@ angular.module('SimpleCouch',[]).provider('couchConfig', {
                     url: encodeUri(couchConfig.server) + "/_session"
                 })
                     .success(function (data) {
-                      console.log(data.userCtx.name);
+                      //console.log(data.userCtx.name);
                         if (data.userCtx.name === null) {
                             cb(false);
                         } else {

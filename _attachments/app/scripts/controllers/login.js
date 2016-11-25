@@ -8,8 +8,9 @@
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('LoginCtrl', function ($scope, couchdb, $uibModalInstance, $cookies) {
+  .controller('LoginCtrl', function ($scope, couchdb, $uibModalInstance, $rootScope) {
     var $db = $scope.$db = couchdb;
+    $scope.authenticated=$rootScope.authenticated;
 
     $scope.submitLogin = function() {
       //console.log($scope);

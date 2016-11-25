@@ -8,12 +8,9 @@
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('PostsCtrl', function ($scope, couchdb, $uibModal) {
+  .controller('PostsCtrl', function ($scope, couchdb, $uibModal, session, $rootScope) {
       var $db = $scope.$db = couchdb;
-      $db.user.isAuthenticated(function(data) {
-        console.log(data);
-        $scope.authenticated=data;
-      });
+      $scope.authenticated=$rootScope.authenticated;
 
       $db.uuid(function(data) {
         $scope.uuid=data.uuids;
@@ -22,6 +19,8 @@ angular.module('angularTestApp')
       $scope.update_posts = function() {
         $scope.$db.view('scheduler', 'posts', {}, function(data) {
           $scope.posts=data;
+          $scope.authenticated=$rootScope.authenticated;
+
           //console.log(data);
         });
       };
@@ -29,7 +28,7 @@ angular.module('angularTestApp')
       $scope.edit = function(id) {
         //console.log(id);
         var template;
-        if ($scope.authenticated) {
+        if ($rootScope.authenticated) {
           template='edit.html';
         }else{
           template='show.html'
@@ -47,6 +46,11 @@ angular.module('angularTestApp')
           $scope.update_posts();
 
         });
+      }
+      $scope.delete = function(id) {
+        $db.doc.delete(id, function(data) {
+          console.log(data);
+        })
       }
   })
   .controller('EditCtrl', function ($scope, couchdb, $uibModalInstance, id, $cookies) {

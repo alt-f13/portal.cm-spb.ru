@@ -29,7 +29,7 @@
     </div>
 
   </div>
-  <div class="modal-body">
+  <div class="modal-body edit">
 
     <div class="row">
       <div class="col-md-10">
@@ -90,8 +90,22 @@
     </div>
 
   </div>
-  <div class="modal-body" ng-bind-html="details.body|trust">
+  <div class="modal-body" >
+    <div ng-bind-html="details.body|trust">
 
+    </div>
+    <div>
+      <ul class="attachments">
+        <li ng-repeat="(name,info) in details._attachments" >
+          <div class="thumbnail" ng-switch="info.content_type=='image/png'||info.content_type=='image/jpeg'">
+            <img ng-switch-when="true" ng-switch-when-separator="|" src="{{docUrl}}{{name}}" alt="">
+            <div class="caption">
+              {{name}}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="close()">Закрыть</button>

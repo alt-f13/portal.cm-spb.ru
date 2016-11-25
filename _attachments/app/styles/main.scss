@@ -11,6 +11,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 }
 .modal {
   .modal-body {
+    .edit {
       max-height: 80vh;
       overflow-y: hidden;
 
@@ -23,6 +24,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
         min-height: 70vh;
         min-width: 70vh;
       }
+    }
+
   }
 
 }

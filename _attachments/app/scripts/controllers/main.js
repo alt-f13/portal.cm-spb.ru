@@ -13,7 +13,7 @@ angular.module('angularTestApp')
     var $db = $scope.$db = couchdb;
     $db.user.session(function(data) {
       console.log(data);
-      $cookies.put("AuthSession", data);
+      //$cookies.put("AuthSession", data);
     });
     $scope.logout=function() {
       $db.user.logout(function(data) {

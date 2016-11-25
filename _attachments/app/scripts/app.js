@@ -50,7 +50,7 @@ var $app = angular
       .otherwise({
         redirectTo: '/posts'
       });
-    couchConfigProvider.setServer('http://127.0.0.1:5984');
+    couchConfigProvider.setServer('/db');
     couchConfigProvider.setDB('gbook');
     $httpProvider.defaults.withCredentials = true;
 

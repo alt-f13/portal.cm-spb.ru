@@ -11,7 +11,8 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
-
+  // load all grunt tasks
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
@@ -66,7 +67,16 @@ module.exports = function (grunt) {
         ]
       }
     },
-
+    proxy: {
+        proxy2 : {
+            options : { // start proxy server, listening to the default port 9000
+                router : {      // make it forward requests according to this table
+                    //'localhost/db/'    : 'https://mysecure.server.com:443/subpath',
+                    'localhost/db/' : 'http://127.0.0.1:5984'
+                }
+            }
+        }
+      },
     // The actual grunt server settings
     connect: {
       options: {
@@ -75,12 +85,43 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      proxies: [
+                {
+                    context: '/db',
+                    host: 'localhost',
+                    port: 5984,
+                    https: false,
+                    rewrite: {
+                        '^/db': '',
+                        '^/changingcontext': '/anothercontext',
+                        '^/updating(context)': function(match, p1) {
+                            return '/new' + p1;
+                        }
+                    }
+                }
+      ],
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
+          middleware: function (connect, options) {
+            if (!Array.isArray(options.base)) {
+                                        options.base = [options.base];
+                                    }
+
+                                    // Setup the proxy
+                                    var middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest];
+
+                                    // Serve static files.
+                                    options.base.forEach(function(base) {
+                                        middlewares.push(connect.static(base));
+                                    });
+
+                                    // Make directory browse-able.
+                                    var directory = options.directory || options.base[options.base.length - 1];
+                                    middlewares.push(connect.directory(directory));
             return [
               connect.static('.tmp'),
+              middlewares,
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
@@ -468,10 +509,12 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'configureProxies:server',
       'concurrent:server',
       'postcss:server',
       'connect:livereload',
       'watch'
+
     ]);
   });
 
@@ -513,4 +556,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  grunt.loadNpmTasks('grunt-proxy');
+
 };

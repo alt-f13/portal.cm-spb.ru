@@ -10,6 +10,11 @@
 angular.module('angularTestApp')
   .controller('PostsCtrl', function ($scope, couchdb, $uibModal) {
       var $db = $scope.$db = couchdb;
+      $db.user.isAuthenticated(function(data) {
+        console.log(data);
+        $scope.authenticated=data;
+      });
+
       $db.uuid(function(data) {
         $scope.uuid=data.uuids;
         //console.log($scope.uuid);
@@ -23,9 +28,14 @@ angular.module('angularTestApp')
       $scope.update_posts();
       $scope.edit = function(id) {
         //console.log(id);
-
+        var template;
+        if ($scope.authenticated) {
+          template='edit.html';
+        }else{
+          template='show.html'
+        }
         $uibModal.open({
-          templateUrl: 'edit.html',
+          templateUrl: template,
           size: 'lg',
           controller: 'EditCtrl',
           resolve: {

@@ -15,14 +15,10 @@ angular.module('angularTestApp')
       //console.log($scope);
       $db.user.login($scope.username, $scope.password, function(data) {
         console.log(data);
-      }).success(function(data, status, header, config) {
-        console.log(header());
+
       });
       $uibModalInstance.close();
-      $db.user.isAuthenticated(function(data) {
-        console.log(data);
-        console.log($db.user.get());
-      });
+
     }
 
     $scope.close = function () {

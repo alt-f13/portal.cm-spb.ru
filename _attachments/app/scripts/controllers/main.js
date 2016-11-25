@@ -11,6 +11,10 @@ var db_name = 'gbook';
 angular.module('angularTestApp')
   .controller('MainCtrl', function ($scope, $filter, couchdb, $uibModal, $cookies) {
     var $db = $scope.$db = couchdb;
+    $db.user.isAuthenticated(function(data) {
+      console.log(data);
+      $scope.authenticated=data;
+    });
     $db.user.session(function(data) {
       console.log(data);
       //$cookies.put("AuthSession", data);
@@ -19,9 +23,8 @@ angular.module('angularTestApp')
       $db.user.logout(function(data) {
         console.log(data);
         $db.user.isAuthenticated(function(data) {
-          console.log("is authenticated:"+data);
-          console.log($db.user.get());
-
+          console.log(data);
+          $scope.authenticated=data;
         });
       });
     };
@@ -33,6 +36,12 @@ angular.module('angularTestApp')
         templateUrl: 'login.html',
         size: 'sm',
         controller: 'LoginCtrl'
-      })
+      }).closed.then(function() {
+        $db.user.isAuthenticated(function(data) {
+          console.log(data);
+          $scope.authenticated=data;
+        });
+      });
     };
+
   });

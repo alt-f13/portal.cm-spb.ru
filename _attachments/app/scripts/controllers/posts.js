@@ -10,8 +10,13 @@
 angular.module('angularTestApp')
   .controller('PostsCtrl', function ($scope, couchdb, $uibModal, session, $rootScope) {
       var $db = $scope.$db = couchdb;
-      $scope.authenticated=$rootScope.authenticated;
-
+      //$scope.authenticated=$rootScope.authenticated;
+      $scope.$on('authenticated', function(e,data) {
+        console.log("posts authenticated event data:", data);
+        $scope.authenticated=data;
+        $scope.$apply
+        //$scope.$emit('authenticated', data);
+      })
       $db.uuid(function(data) {
         $scope.uuid=data.uuids;
         //console.log($scope.uuid);
@@ -19,7 +24,6 @@ angular.module('angularTestApp')
       $scope.update_posts = function() {
         $scope.$db.view('scheduler', 'posts', {}, function(data) {
           $scope.posts=data;
-          $scope.authenticated=$rootScope.authenticated;
 
           //console.log(data);
         });

@@ -51,5 +51,9 @@ angular.module('angularTestApp')
             }
 
     };
+    // $scope.$on('authenticated', function(e,data) {
+    //   console.log("postsctrl authenticated event data:", data);
+    //   $scope.authenticated=data;
+    // })
 
   });

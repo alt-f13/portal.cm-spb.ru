@@ -20,7 +20,8 @@
     "angular-bootstrap-colorpicker": "^3.0.25",
     "textAngular": "^1.5.13",
     "ui.bootstrap": "^2.2.0",
-    "angular-bootstrap": "^2.2.0"
+    "angular-bootstrap": "^2.2.0",
+    "ngGallery": "*"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

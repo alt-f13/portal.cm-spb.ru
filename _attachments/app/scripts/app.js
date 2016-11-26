@@ -23,7 +23,8 @@ var $app = angular
     'ngFileUpload',
     'textAngular',
     'ui.bootstrap',
-    'ngCookies'
+    'ngCookies',
+    'jkuri.gallery'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider) {
     $routeProvider
@@ -41,6 +42,11 @@ var $app = angular
         templateUrl: 'views/posts.html',
         controller: 'PostsCtrl',
         controllerAs: 'posts'
+      })
+      .when('/links', {
+        templateUrl: 'views/links.html',
+        controller: 'LinksCtrl',
+        controllerAs: 'links'
       })
       .when('/scheduler/:day?', {
         templateUrl: 'views/scheduler.html',

@@ -8,7 +8,7 @@
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('PostsCtrl', function ($scope, couchdb, $uibModal, session, $rootScope) {
+  .controller('PostsCtrl', function ($scope, couchdb, $uibModal, session) {
       var $db = $scope.$db = couchdb;
       //$scope.authenticated=$rootScope.authenticated;
       $scope.$on('authenticated', function(e,data) {
@@ -32,7 +32,7 @@ angular.module('angularTestApp')
       $scope.edit = function(id) {
         //console.log(id);
         var template;
-        if ($rootScope.authenticated) {
+        if ($scope.authenticated) {
           template='edit.html';
         }else{
           template='show.html'
@@ -68,8 +68,21 @@ angular.module('angularTestApp')
     $scope.details.type="post";
     $scope.docUrl=$scope.$db.config.getServer()+"/"+$scope.$db.db.getName()+"/"+id+"/";
     $scope.$db.doc.get($scope.details._id, function(data) {
+      console.log(data);
+
         $scope.details = data;
-        console.log(data);
+        $scope.images = [];
+        $scope.attachments = [];
+        angular.forEach(data._attachments, function(info, name) {
+          console.log(info, name);
+          if(info.content_type.match(/image/)) {
+            console.log($scope.images);
+            $scope.images.push({thumb: $scope.docUrl+name, img: $scope.docUrl+name});
+          }else{
+            $scope.attachments.push({name: $scope.docUrl+name, info: info});
+            console.log($scope.attachments);
+          }
+        })
     });
     $scope.updateAttachments = function() {
       $db.doc.get($scope.details._id, function(data) {

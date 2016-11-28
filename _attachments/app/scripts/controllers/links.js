@@ -8,10 +8,12 @@
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('LinksCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('LinksCtrl', function ($scope,couchdb) {
+    var $db = $scope.$db = couchdb;
+    $db.doc.get('form', function(data) {
+      console.log(data);
+      $scope.form=data.form;
+      $scope.schema=data.schema;
+    });
+
   });

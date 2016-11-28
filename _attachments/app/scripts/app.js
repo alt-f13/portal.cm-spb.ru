@@ -24,7 +24,8 @@ var $app = angular
     'textAngular',
     'ui.bootstrap',
     'ngCookies',
-    'thatisuday.ng-image-gallery'
+    'thatisuday.ng-image-gallery',
+    'schemaForm'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider, ngImageGalleryOptsProvider) {
     $routeProvider

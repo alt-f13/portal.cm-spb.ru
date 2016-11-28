@@ -94,8 +94,17 @@
     <div ng-bind-html="details.body|trust">
 
     </div>
-    <ng-gallery images="images"></ng-gallery>
-
+    <ng-image-gallery
+        images="images"
+        thumbnails="false"
+        inline="true"
+        bg-close="true"
+        bubbles="true"
+        img-anim="fadeup"
+        conf="conf"
+        on-open="opened();"
+        on-close="closed();"
+    ></ng-image-gallery>
     <div>
       <ul class="attachments">
         <li ng-repeat="(index,info) in attachments" >

@@ -77,7 +77,7 @@ angular.module('angularTestApp')
           console.log(info, name);
           if(info.content_type.match(/image/)) {
             console.log($scope.images);
-            $scope.images.push({thumb: $scope.docUrl+name, img: $scope.docUrl+name});
+            $scope.images.push({url: $scope.docUrl+name});
           }else{
             $scope.attachments.push({name: $scope.docUrl+name, info: info});
             console.log($scope.attachments);

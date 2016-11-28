@@ -24,9 +24,9 @@ var $app = angular
     'textAngular',
     'ui.bootstrap',
     'ngCookies',
-    'jkuri.gallery'
+    'thatisuday.ng-image-gallery'
   ])
-  .config(function ($routeProvider,$httpProvider,couchConfigProvider) {
+  .config(function ($routeProvider,$httpProvider,couchConfigProvider, ngImageGalleryOptsProvider) {
     $routeProvider
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -61,5 +61,6 @@ var $app = angular
     $httpProvider.defaults.withCredentials = true;
 
     //couchConfigProvider.setMethod('method GET/JSONP');
+
 
   });

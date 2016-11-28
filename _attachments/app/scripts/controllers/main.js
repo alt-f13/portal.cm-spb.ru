@@ -50,7 +50,58 @@ angular.module('angularTestApp')
 
       });
     };
+    $scope.registerModal = function() {
+      $uibModal.open({
+        templateUrl: 'register.html',
+        size: 'sm',
+        controller: 'RegisterCtrl'
+      });
+    };
 
 
+  })
+.controller('LoginCtrl', function ($scope, couchdb, $uibModalInstance, $rootScope) {
+    var $db = $scope.$db = couchdb;
+    //$scope.authenticated=$rootScope.authenticated;
 
-  });
+    $scope.submitLogin = function() {
+      //console.log($scope);
+      $db.user.login($scope.username, $scope.password, function(data) {
+        $db.user.isAuthenticated(function(data) {
+          console.log('isAuthenticated', data);
+          $rootScope.$broadcast("authenticated", data);
+
+        });
+
+      });
+      $uibModalInstance.close();
+
+    }
+
+    $scope.close = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
+
+  })
+.controller('RegisterCtrl', function($scope, couchdb, $uibModalInstance) {
+  var $db = $scope.$db = couchdb;
+
+  $scope.submitRegistration = function() {
+    $db.user.create($scope.username, $scope.password, function(data) {
+      console.log(data);
+      $db.user.login($scope.username, $scope.password, function(data) {
+        $db.user.isAuthenticated(function(data) {
+          console.log('isAuthenticated', data);
+          //$rootScope.$broadcast("authenticated", data);
+
+        });
+
+      });
+      $uibModalInstance.close();
+    });
+  };
+  $scope.close = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+
+});

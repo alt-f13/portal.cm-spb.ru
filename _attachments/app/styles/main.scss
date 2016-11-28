@@ -6,6 +6,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // endbower
 @import "pickmeup.scss";
 @import "icons.scss";
+@import "print.scss";
 .modal-lg {
   width: 80% !important;
 }
@@ -24,8 +25,16 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
         min-height: 70vh;
         min-width: 70vh;
       }
+      .attachments {
+        max-height: 80vh;
+        overflow: scroll;
+        .thumbnail {
+          max-width: 100px;
+          max-height: 80px;
+          overflow: hidden;
+        }
+      }
     }
-
   }
 
 }
@@ -33,18 +42,6 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
     height: auto;
     min-height: 70vh;
     padding: 6px 12px;
-}
-.attachments {
-  height: 80vh;
-  overflow: scroll;
-
-  .thumbnail {
-    max-width: 100px;
-    max-height: 80px;
-    overflow: hidden;
-
-  }
-
 }
 
 

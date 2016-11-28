@@ -13,6 +13,11 @@ angular.module('angularTestApp')
         //console.log(element);
         //scope.change();
         element.editableTableWidget();
+        element.on('change', function() {
+          this.addClass("edited");
+          console.log(this);
+
+        });
         //console.log($(this));
         element.on("change", function(event) {
           /* Act on the event */

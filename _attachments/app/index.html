@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.css" />
     <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
     <link rel="stylesheet" href="bower_components/ng-image-gallery/dist/ng-image-gallery.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -48,6 +50,7 @@
               <li ng-show="authenticated"><a ng-href="#/scheduler/">Расписание</a></li>
               <li><a ng-href="#/links">Ссылки</a></li>
               <li ng-show="!authenticated"><a ng-href="#" ng-click="loginModal()">Login</a></li>
+              <li ng-show="!authenticated"><a ng-href="#" ng-click="registerModal()">Регистрация</a></li>
               <li ng-show="authenticated"><a ng-href="#" ng-click="logout()">Logout</a></li>
 
             </ul>
@@ -85,6 +88,31 @@
             <div>
                <button class="btn" data-dismiss="modal">Close</button>
                <button class='btn btn-primary' type="submit">Login</button>
+            </div>
+         </form>
+      </div>
+
+    </script>
+    <!-- ################# -->
+    <!-- ##################### Login template -->
+    <script type="text/ng-template" id="register.html">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+         <h4>Регистрация</h4>
+      </div>
+      <div class="modal-body">
+         <form class='form-signup' name='loginForm' ng-submit="submitRegistration()">
+            <div class="form-group">
+               <label for="loginformUser">Login</label>
+               <input id="loginformUser" type='text' name='user' ng-model='username' class="form-control" placeholder="Login Name" required>
+            </div>
+            <div class="form-group">
+               <label for="loginformPass">Password</label>
+               <input id="loginformPass" type='password' name='pass' ng-model='password' class="form-control" placeholder="Password" required>
+            </div>
+            <div>
+               <button class="btn" data-dismiss="modal">Close</button>
+               <button class='btn btn-primary' type="submit">Зарегистрироваться</button>
             </div>
          </form>
       </div>
@@ -133,6 +161,8 @@
     <script src="bower_components/ng-image-gallery/dist/ng-image-gallery.js"></script>
     <script src="bower_components/flow.js/dist/flow.js"></script>
     <script src="bower_components/ng-flow/dist/ng-flow.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <script src="scripts/jquery.pickmeup.js" charset="utf-8"></script>

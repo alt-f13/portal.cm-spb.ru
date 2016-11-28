@@ -3,11 +3,13 @@
   <div class="modal-header">
     <div class="row">
       <div class="col-md-8">
-            <div class="input-group">
-              <span class="input-group-addon" id="basic-addon1">Название</span>
-              <input type="text" class="form-control" placeholder="Название" aria-describedby="basic-addon1" ng-model="details.title">
-            </div>
-          </div>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <input type="checkbox" aria-label="опубликованно" ng-model="details.published">
+          </span>
+          <input type="text" class="form-control" placeholder="Название" aria-describedby="basic-addon1" ng-model="details.title">
+        </div><!-- /input-group -->
+      </div>
       <div class="col-md-2">
           <div class="input-group">
             <span class="input-group-addon" style="cursor: pointer">
@@ -29,9 +31,9 @@
     </div>
 
   </div>
-  <div class="modal-body edit">
+  <div class="modal-body ">
 
-    <div class="row">
+    <div class="row edit">
       <div class="col-md-10">
         <div class="form-group">
            <text-angular  ng-model="details.body" ></text-angular>
@@ -91,27 +93,35 @@
 
   </div>
   <div class="modal-body" >
-    <div ng-bind-html="details.body|trust">
+    <div class="row">
+      <div class="col-md-12">
+        <div ng-bind-html="details.body|trust"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <ng-image-gallery
+            images="images"
+            thumbnails="true"
+            inline="false"
+            bg-close="true"
+            bubbles="true"
+            img-anim="fadeup"
+            on-open="opened();"
+            on-close="closed();"
+        ></ng-image-gallery>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="attachments">
+          <li ng-repeat="(index,info) in attachments" >
+            <a class="link-icon" ng-href="{{info.url}}">{{info.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-    </div>
-    <ng-image-gallery
-        images="images"
-        thumbnails="false"
-        inline="true"
-        bg-close="true"
-        bubbles="true"
-        img-anim="fadeup"
-        conf="conf"
-        on-open="opened();"
-        on-close="closed();"
-    ></ng-image-gallery>
-    <div>
-      <ul class="attachments">
-        <li ng-repeat="(index,info) in attachments" >
-          <a class="link-icon" ng-href="{{info.name}}">{{info.name}}</a>
-        </li>
-      </ul>
-    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="close()">Закрыть</button>

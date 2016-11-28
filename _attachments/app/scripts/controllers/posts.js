@@ -10,22 +10,18 @@
 angular.module('angularTestApp')
   .controller('PostsCtrl', function ($scope, couchdb, $uibModal, session) {
       var $db = $scope.$db = couchdb;
-      //$scope.authenticated=$rootScope.authenticated;
       $scope.$on('authenticated', function(e,data) {
         console.log("posts authenticated event data:", data);
         $scope.authenticated=data;
-        $scope.$apply
-        //$scope.$emit('authenticated', data);
       })
-      $db.uuid(function(data) {
-        $scope.uuid=data.uuids;
-        //console.log($scope.uuid);
-      });
+
       $scope.update_posts = function() {
         $scope.$db.view('scheduler', 'posts', {}, function(data) {
           $scope.posts=data;
-
-          //console.log(data);
+        });
+        $db.uuid(function(data) {
+          $scope.uuid=data.uuids;
+          //console.log($scope.uuid);
         });
       };
       $scope.update_posts();
@@ -52,9 +48,14 @@ angular.module('angularTestApp')
         });
       }
       $scope.delete = function(id) {
-        $db.doc.delete(id, function(data) {
+        console.log('deleting: ', id);
+        $db.doc.get(id, function(data) {
           console.log(data);
-        })
+          $db.doc.delete(data, function(data) {
+            console.log('deleted: ',data);
+          })
+        });
+
       }
   })
   .controller('EditCtrl', function ($scope, couchdb, $uibModalInstance, id, $cookies) {
@@ -68,8 +69,6 @@ angular.module('angularTestApp')
     $scope.details.type="post";
     $scope.docUrl=$scope.$db.config.getServer()+"/"+$scope.$db.db.getName()+"/"+id+"/";
     $scope.$db.doc.get($scope.details._id, function(data) {
-      console.log(data);
-
         $scope.details = data;
         $scope.images = [];
         $scope.attachments = [];
@@ -79,7 +78,7 @@ angular.module('angularTestApp')
             console.log($scope.images);
             $scope.images.push({url: $scope.docUrl+name});
           }else{
-            $scope.attachments.push({name: $scope.docUrl+name, info: info});
+            $scope.attachments.push({url: $scope.docUrl+name, name: name, info: info});
             console.log($scope.attachments);
           }
         })

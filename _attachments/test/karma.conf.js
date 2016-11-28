@@ -50,6 +50,8 @@ module.exports = function(config) {
       'bower_components/ng-image-gallery/dist/ng-image-gallery.js',
       'bower_components/flow.js/dist/flow.js',
       'bower_components/ng-flow/dist/ng-flow.js',
+      'bower_components/angular-ui-grid/ui-grid.js',
+      'bower_components/angular-ui-grid/ui-grid.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

@@ -1,16 +1,13 @@
-<div class="jumbotron">
-  <div class="container-fluid" ng-controller="SchedulerCtrl">
+<div class="container-fluid" ng-controller="SchedulerCtrl">
      <div class="row">
-
-
        <div class="col-md-6">
-         <div ui-date="dateOptions" name="DateOfBirth"></div>
-
+         <div pickmeup></div>
        </div>
      </div>
-     <div pickmeup></div>
-   <table editable-Table class="table table-hover" class="table table-bordered   " style="border-collapse:collapse;" ng-bind-html="details.data|trust" ng-change="change()" ng-model="details.data">
-   </table>
+     <div class="row">
+       <table editable-Table class="table table-hover" class="table table-bordered" ng-bind-html="details.data|trust" ng-change="change()" ng-model="details.data">
+       </table>
+     </div>
 
-</div>
+
 </div>

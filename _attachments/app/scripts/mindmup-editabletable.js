@@ -40,6 +40,9 @@ $.fn.editableTableWidget = function (options) {
 				if (evt.result === false) {
 					active.html(originalContent);
 				}
+        active.addClass("changed");
+
+        console.log('changed', active.hasClass('changed'));
 			},
 			movement = function (element, keycode) {
 				if (keycode === ARROW_RIGHT) {
@@ -87,6 +90,7 @@ $.fn.editableTableWidget = function (options) {
 				editor.addClass('error');
 			} else {
 				editor.removeClass('error');
+				editor.addClass("changed");
 			}
 		});
 		element.on('click keypress dblclick', showEditor)
@@ -124,7 +128,7 @@ $.fn.editableTableWidget = function (options) {
 };
 $.fn.editableTableWidget.defaultOptions = {
 	cloneProperties: ['padding', 'padding-top', 'padding-bottom', 'padding-left', 'padding-right',
-					  'text-align', 'font', 'font-size', 'font-family', 
+					  'text-align', 'font', 'font-size', 'font-family',
 					  'border', 'border-top', 'border-bottom', 'border-left', 'border-right'],
 	editor: $('<input>')
 };

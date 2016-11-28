@@ -22,7 +22,8 @@
     "ui.bootstrap": "^2.2.0",
     "angular-bootstrap": "^2.2.0",
     "ng-image-gallery": "^2.0.8",
-    "ng-flow": "~2"
+    "ng-flow": "~2",
+    "angular-ui-grid": "^3.2.9"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

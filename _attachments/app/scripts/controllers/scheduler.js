@@ -11,6 +11,24 @@ var db_name = 'gbook';
 angular.module('angularTestApp')
   .controller('SchedulerCtrl', function ($scope, $sce, $filter, couchdb, $routeParams, $location) {
     console.log($routeParams.day);
+    var $db = $scope.$db = couchdb;
+
+    $scope.gridOptions = {};
+
+    $scope.gridOptions.columnDefs = [
+      {name: 1},
+      {name: 2},
+      {name: 3},
+      {name: 4},
+      {name: 5},
+      {name: 6},
+      {name: 7},
+      {name: 8}
+
+
+    ];
+    //$db.doc.get()
+
 
     if($routeParams.day ===  undefined) {
       var tomorrow=Date.today().add(1).days();
@@ -25,7 +43,10 @@ angular.module('angularTestApp')
       $scope._day = $routeParams.day;
     }
     $scope._day_literal = moment.unix($scope._day).format("dddd").toLowerCase();
-
+    $db.doc.get($scope._day_literal+"2", function(data) {
+      $scope.gridOptions.data = data.table;
+        console.log(data);
+    })
 
     //$scope.server = cornercouch("https://admin:sdc888@couch.2d-it.ru", "GET");
     //$scope.server = cornercouch("http://localhost:5984", "GET");

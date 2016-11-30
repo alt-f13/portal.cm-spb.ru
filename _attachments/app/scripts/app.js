@@ -25,7 +25,12 @@ var $app = angular
     'ui.bootstrap',
     'ngCookies',
     'thatisuday.ng-image-gallery',
-    'schemaForm'
+    'schemaForm',
+    'ui.router',
+    'ui.grid',
+    'ui.grid.edit',
+    'ui.grid.rowEdit',
+    'ui.grid.cellNav'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider, ngImageGalleryOptsProvider) {
     $routeProvider

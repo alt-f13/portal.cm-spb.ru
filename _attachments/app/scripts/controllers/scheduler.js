@@ -1,6 +1,14 @@
 'use strict';
 var db_name = 'gbook';
 
+function transponse(arr) {
+  return arr.map(function(col, i) {
+    return arr.map(function(row) {
+      return row[i]
+    })
+  });
+};
+
 /**
  * @ngdoc function
  * @name angularTestApp.controller:SchedulerCtrl
@@ -14,20 +22,9 @@ angular.module('angularTestApp')
     var $db = $scope.$db = couchdb;
 
     $scope.gridOptions = {};
-
-    $scope.gridOptions.columnDefs = [
-      {name: 1},
-      {name: 2},
-      {name: 3},
-      {name: 4},
-      {name: 5},
-      {name: 6},
-      {name: 7},
-      {name: 8}
-
-
-    ];
     //$db.doc.get()
+    $scope.gridOptions.enableCellEditOnFocus = true;
+    $scope.gridOptions.enableSorting = false;
 
 
     if($routeParams.day ===  undefined) {
@@ -44,6 +41,10 @@ angular.module('angularTestApp')
     }
     $scope._day_literal = moment.unix($scope._day).format("dddd").toLowerCase();
     $db.doc.get($scope._day_literal+"2", function(data) {
+      var table = transponse(data.table);
+      $scope.gridOptions.columnDefs = data.cols.map(function(col) {
+        return {"name": col.toString()}
+      });
       $scope.gridOptions.data = data.table;
         console.log(data);
     })

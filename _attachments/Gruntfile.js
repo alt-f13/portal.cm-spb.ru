@@ -454,7 +454,8 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'CNAME'
           ]
         }, {
           expand: true,
@@ -466,7 +467,19 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
-        }]
+        },{
+          expand: true,
+          cwd: '.',
+          src: 'bower_components/DateJS/build/production/date.min.js',
+          dest: '<%= yeoman.dist %>'
+        },{
+          expand: true,
+          cwd: '.',
+          src: 'bower_components/font-awesome/fonts/*',
+          dest: '<%= yeoman.dist %>/'
+        }
+      ]
+
       },
       styles: {
         expand: true,
@@ -497,7 +510,16 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+    'gh-pages': {
+        options: {
+          base: 'dist',
+          repo: 'git@github.com:alt-f13/portal.cm-spb.ru.git'
+        },
+        src: '**/*'
+      }
+
   });
 
 
@@ -557,5 +579,6 @@ module.exports = function (grunt) {
     'build'
   ]);
   grunt.loadNpmTasks('grunt-proxy');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
 };

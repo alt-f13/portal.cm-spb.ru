@@ -57,7 +57,11 @@ var $app = angular
       .otherwise({
         redirectTo: '/posts'
       });
-    couchConfigProvider.setServer('/db');
+      if(location.hostname === 'localhost') {
+        couchConfigProvider.setServer("/db");
+      }else {
+        couchConfigProvider.setServer("https://couch.2d-it.ru");
+      }
     couchConfigProvider.setDB('gbook');
     $httpProvider.defaults.withCredentials = true;
 

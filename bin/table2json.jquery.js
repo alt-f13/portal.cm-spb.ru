@@ -15,8 +15,11 @@ var newArray = tbl.map(function(col, i) {
   });
   return _row;
 });
-var cols=headers.map(function(col) {
-  return {"name": col.toString()};
+console.log(headers[0]);
+var cols=headers[0].map(function(col) {
+  return {
+    name: col.toString()
+  };
 });
 var arr=JSON.stringify({
   table: newArray,

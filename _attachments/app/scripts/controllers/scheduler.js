@@ -17,7 +17,7 @@ function transponse(arr) {
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('SchedulerCtrl', function ($scope, $sce, $filter, couchdb, $routeParams, $location) {
+  .controller('SchedulerCtrl', function ($scope, $sce, $filter, $interval, $q, couchdb, $routeParams, $location) {
     console.log($routeParams.day);
     var $db = $scope.$db = couchdb;
 
@@ -26,6 +26,14 @@ angular.module('angularTestApp')
     $scope.gridOptions.enableCellEditOnFocus = true;
     $scope.gridOptions.enableSorting = false;
 
+
+    $scope.gridOptions.onRegisterApi = function(gridApi){
+      //set gridApi on scope
+      $scope.gridApi = gridApi;
+      gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
+            console.log($scope.gridOptions.data);
+          });
+    };
 
     if($routeParams.day ===  undefined) {
       var tomorrow=Date.today().add(1).days();
@@ -41,7 +49,6 @@ angular.module('angularTestApp')
     }
     $scope._day_literal = moment.unix($scope._day).format("dddd").toLowerCase();
     $db.doc.get($scope._day_literal+"2", function(data) {
-      var table = transponse(data.table);
       $scope.gridOptions.columnDefs = data.cols.map(function(col) {
         return {"name": col.toString()}
       });

@@ -20,13 +20,13 @@ angular.module('angularTestApp')
   .controller('SchedulerCtrl', function ($scope, $sce, $filter, $interval, $q, couchdb, $routeParams, $location) {
     var $db = $scope.$db = couchdb;
     var _day;
-    $scope.gridOptions = {};
-    $scope.gridOptions.enableCellEditOnFocus = true;
-    $scope.gridOptions.enableSorting = false;
-
     $scope._doc={};
-    $scope._doc.grid={};
+    $scope._doc.grid = {};
     $scope._doc.grid.data={};
+    $scope._doc.grid.enableCellEditOnFocus = true;
+    $scope._doc.grid.enableSorting = false;
+    $scope._doc.grid.rowEditWaitInterval= -1;
+
 
     if($routeParams.day ===  undefined) {
         var tomorrow=Date.today().add(1).days();
@@ -39,18 +39,11 @@ angular.module('angularTestApp')
         console.log($routeParams);
         $scope._day = $routeParams.day;
       }
+      moment.locale("en");
     $scope._day_literal = moment.unix($scope._day).format("dddd").toLowerCase();
 
 
-    $db.doc.get($scope._day_literal+"2", function(data) {
-      $scope._doc=data;
-      $scope._doc._id=$scope._day;
-      $scope._doc.type="schedule";
-      $scope._doc._rev="";
-      console.log($scope._doc);
-      $scope.$apply();
 
-    })
 
     $scope.location = function (_day) {
       $location.path("/scheduler/"+ _day);
@@ -58,30 +51,40 @@ angular.module('angularTestApp')
     }
 
     $db.doc.get($scope._day, function(data) {
-        $scope.details = data;
+        $scope._doc=data;
         console.log(data);
     })
       .error(function() {
         console.log("error");
-        $db.doc.get($scope._day_literal, function(data) {
-          data._rev = undefined;
-          data.type = "schedule"
-          console.log(data);
-          $scope.details = data;
-          $scope.details._id=$scope._day;
-          $scope.server.doc.put($scope.details, function(data) {
-            $scope.details._rev=data.rev;
-            console.log(data);
-          });
+        $db.doc.get($scope._day_literal+"2", function(data) {
+          $scope._doc=data;
+          moment.locale("ru");
+          $scope._doc.date=moment.unix($scope._day).format('dddd DD MMMM YYYY');
+          $scope._doc._id=$scope._day;
+          $scope._doc.type="schedule";
+          $scope._doc._rev=undefined;
+          console.log($scope._doc);
+          //$scope.$apply();
+
         });
       });
+  $db.view('scheduler', 'schedules', {}, function(data) {
+    console.log(data);
+    $scope.dates=data.map(function(i) {
+      return i.id;
+    });
+  });
 
 
-    $scope.gridOptions.onRegisterApi = function(gridApi){
+    $scope._doc.grid.onRegisterApi = function(gridApi){
       //set gridApi on scope
       $scope.gridApi = gridApi;
       gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
-            console.log($scope.gridOptions.data);
+            console.log($scope._doc);
+            $db.doc.put($scope._doc, function(data) {
+              console.log("put:", data);
+              $scope._doc._rev=data.rev;
+            });
           });
     };
 

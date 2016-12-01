@@ -22,7 +22,7 @@ var cols=headers[0].map(function(col) {
   };
 });
 var arr=JSON.stringify({
-  table: newArray,
-  cols: cols,
+  data: newArray,
+  columnDefs: cols,
 });
 console.log(headers, arr);

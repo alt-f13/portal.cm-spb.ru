@@ -1,17 +1,16 @@
+<div class="container">
+  <h2>Расписание <span class="pull-right">{{_doc.date}}</span><h2>
+</div>
 <div class="container-fluid" ng-controller="SchedulerCtrl">
      <div class="row">
-       <div class="col-md-6">
+       <div class="col-md-2">
          <div pickmeup></div>
        </div>
-       <div class="col-md-6">
-         {{_doc.date}}
+       <div class="col-md-10">
+         <div ui-grid="_doc.grid" ui-grid-edit ui-grid-row-edit ui-grid-cellNav class="grid"></div>
        </div>
      </div>
-     <div class="row">
-       <table editable-Table class="table table-hover" class="table table-bordered" ng-bind-html="details.data|trust" ng-change="change()" ng-model="details.data">
-       </table>
-     </div>
+
 
 
 </div>
-<div ui-grid="_doc.grid" ui-grid-edit ui-grid-row-edit ui-grid-cellNav class="grid"></div>

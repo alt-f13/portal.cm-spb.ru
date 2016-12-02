@@ -13,7 +13,7 @@ angular.module('angularTestApp')
         //element.text('this is the pickmeup directive');
         //element.pickmeup();
         var _documents=new Array();
-
+          scope.$watch(scope.dates, function() {
             element.pickmeup({
                flat	: true,
                //format  : 'unix',
@@ -48,6 +48,8 @@ angular.module('angularTestApp')
                }
 
             });
+
+          })
 
 
 

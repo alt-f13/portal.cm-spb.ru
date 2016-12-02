@@ -20,12 +20,22 @@ angular.module('angularTestApp')
   .controller('SchedulerCtrl', function ($scope, $sce, $filter, $interval, $q, couchdb, $routeParams, $location) {
     var $db = $scope.$db = couchdb;
     var _day;
+    $scope.dates=[];
     $scope._doc={};
-    $scope._doc.grid = {};
+    $scope._doc.grid = {
+      enableHorizontalScrollbar: false,
+      enableVerticalScrollbar:false,
+      rowEditWaitInterval: -1,
+      enableSorting: false,
+      enableFiltering: false,
+      headerRowHeight: 30,
+      rowHeight: 80,
+
+    };
     $scope._doc.grid.data={};
-    $scope._doc.grid.enableCellEditOnFocus = true;
-    $scope._doc.grid.enableSorting = false;
-    $scope._doc.grid.rowEditWaitInterval= -1;
+    //$scope._doc.grid.enableCellEditOnFocus = true;
+    //$scope._doc.grid.enableSorting = false;
+    //$scope._doc.grid.rowEditWaitInterval= -1;
 
 
     if($routeParams.day ===  undefined) {
@@ -73,6 +83,7 @@ angular.module('angularTestApp')
     $scope.dates=data.map(function(i) {
       return i.id;
     });
+    $scope.$apply
   });
 
 

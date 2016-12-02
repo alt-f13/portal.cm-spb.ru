@@ -30,7 +30,9 @@ var $app = angular
     'ui.grid',
     'ui.grid.edit',
     'ui.grid.rowEdit',
-    'ui.grid.cellNav'
+    'ui.grid.cellNav',
+    'ui.grid.autoResize',
+    'ui.grid.resizeColumns'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider, ngImageGalleryOptsProvider) {
     $routeProvider

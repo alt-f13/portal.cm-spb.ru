@@ -91,7 +91,9 @@ angular.module('angularTestApp')
       //set gridApi on scope
       $scope.gridApi = gridApi;
       gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
-            console.log($scope._doc);
+            newValue = "+"+newValue;
+            console.log(newValue, rowEntity, colDef);
+
             $db.doc.put($scope._doc, function(data) {
               console.log("put:", data);
               $scope._doc._rev=data.rev;

@@ -32,7 +32,8 @@ var $app = angular
     'ui.grid.rowEdit',
     'ui.grid.cellNav',
     'ui.grid.autoResize',
-    'ui.grid.resizeColumns'
+    'ui.grid.resizeColumns',
+    'ngHandsontable'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider, ngImageGalleryOptsProvider) {
     $routeProvider

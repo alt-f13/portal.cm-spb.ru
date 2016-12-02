@@ -73,7 +73,8 @@ angular.module('angularTestApp')
           $scope._doc._id=$scope._day;
           $scope._doc.type="schedule";
           $scope._doc._rev=undefined;
-          console.log($scope._doc);
+          $scope._doc.grid.columns=$scope._doc.grid.columnDefs.map(function(i) {return i.name});
+          console.log($scope._doc.grid);
           //$scope.$apply();
 
         });

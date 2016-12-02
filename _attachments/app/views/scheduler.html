@@ -7,11 +7,18 @@
          <div pickmeup></div>
        </div>
        <div class="col-md-10">
-         <div ui-grid="_doc.grid" ui-grid-edit ui-grid-row-edit ui-grid-cellNav class="grid"></div>
+         <hot-table
+           datarows="_doc.grid.data"
+           settings="_doc.grid.settings"
+           col-headers="_doc.grid.columns"
+           row-headers="true"
+           
+
+
+         ></hot-table>
        </div>
      </div>
 
 
 
 </div>
-<hot-table datarows="_doc.grid.data" col-headers="_doc.grid.columns"></hot-table>

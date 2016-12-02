@@ -7,6 +7,25 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "pickmeup.scss";
 @import "icons.scss";
 @import "print.scss";
+.handsontable td {
+  border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  height: 22px; /*change to the desired height value*/
+  empty-cells: show;
+  line-height: 21px;
+  padding: 0 4px 0 4px;
+  /* top, bottom padding different than 0 is handled poorly by FF with HTML5 doctype */
+  background-color: #FFF;
+  vertical-align: top;
+  overflow: hidden;
+  outline-width: 0;
+  white-space: pre-line;
+  word-wrap: break-word;
+
+  /* preserve new line character in cell */
+}
+
+
 .modal-lg {
   width: 80% !important;
 }

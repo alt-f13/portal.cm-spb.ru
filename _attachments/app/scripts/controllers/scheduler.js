@@ -22,16 +22,35 @@ angular.module('angularTestApp')
     var _day;
     $scope.dates=[];
     $scope._doc={};
-    $scope._doc.grid = {
-      enableHorizontalScrollbar: false,
-      enableVerticalScrollbar:false,
-      rowEditWaitInterval: -1,
-      enableSorting: false,
-      enableFiltering: false,
-      headerRowHeight: 30,
-      rowHeight: 80,
+    $scope._doc.grid={};
+    $scope._doc.grid.settings = {
+      contextMenu: [
+        'row_above', 'row_below', 'remove_row'
+      ],
+      rowHeights: 50,
+      stretchH: 'all',
+      colWidths: 30, // can also be a number or a function
+      rowHeaders: true,
+      colHeaders: true,
+      // callbacks have 'on' prefix
+      onAfterInit: function() {
+        console.log('onAfterInit call');
+      },
+      onAfterChange: function(index, amount) {
+        console.log($scope._doc.grid.data);
+        console.log(index , amount);
+        $db.doc.put($scope._doc, function(data) {
+          console.log("put:", data);
+
+          $scope._doc._rev=data.rev;
+        });
+      },
+      // contextMenuCopyPaste: {
+      //       swfPath: 'zeroclipboard/dist/ZeroClipboard.swf';
+      // }
 
     };
+
     $scope._doc.grid.data={};
     //$scope._doc.grid.enableCellEditOnFocus = true;
     //$scope._doc.grid.enableSorting = false;
@@ -79,6 +98,7 @@ angular.module('angularTestApp')
 
         });
       });
+
   $db.view('scheduler', 'schedules', {}, function(data) {
     console.log(data);
     $scope.dates=data.map(function(i) {

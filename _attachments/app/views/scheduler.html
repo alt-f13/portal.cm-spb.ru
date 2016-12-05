@@ -9,13 +9,13 @@
        <div class="col-md-10">
          <hot-table
            datarows="_doc.grid.data"
-           settings="_doc.grid.settings"
+           settings="settings"
            col-headers="_doc.grid.columns"
            row-headers="true"
-           
+         >
+          <hot-column ng-repeat="column in _doc.grid.columns" data="{{column}}" title="column" renderer="validRenderer"></hot-column>
 
-
-         ></hot-table>
+         </hot-table>
        </div>
      </div>
 

@@ -20,13 +20,31 @@ angular.module('angularTestApp')
   .controller('SchedulerCtrl', function ($scope, $sce, $filter, $interval, $q, couchdb, $routeParams, $location) {
     var $db = $scope.$db = couchdb;
     var _day;
+    $scope._doc={
+      grid: {
+        data: {},
+        columns: {}
+      },
+      cellStyle: new Array(10)
+    };
+    $scope.validRenderer = function(instance, td, row, col, prop, value, cellProperties){
+        Handsontable.renderers.TextRenderer.apply(this, arguments);
+        //console.log('validRenderer: ',td, row, col, prop, value);
+        var _row = $scope._doc.cellStyle[row];
+        if(_row !== null) {
+           td.style.color = "#eee"
+           console.log("exist", col, _row[col]);
+        }
+        //console.log(td);
+
+        return td;
+    };
     $scope.dates=[];
-    $scope._doc={};
-    $scope._doc.grid={};
-    $scope._doc.grid.settings = {
-      contextMenu: [
-        'row_above', 'row_below', 'remove_row'
-      ],
+
+    $scope.settings = {
+      // contextMenu: [
+      //   'row_above', 'row_below', 'remove_row'
+      // ],
       rowHeights: 50,
       stretchH: 'all',
       colWidths: 30, // can also be a number or a function
@@ -37,11 +55,16 @@ angular.module('angularTestApp')
         console.log('onAfterInit call');
       },
       onAfterChange: function(index, amount) {
-        console.log($scope._doc.grid.data);
-        console.log(index , amount);
+        //console.log($scope._doc);
+        //console.log(index , amount);
+        if(index) {
+          if(!$scope._doc.cellStyle) $scope._doc.cellStyle=new Array(10);
+          if(!$scope._doc.cellStyle[index[0][0]]) $scope._doc.cellStyle[index[0][0]]={};
+          $scope._doc.cellStyle[index[0][0]][index[0][1]]="grey"
+        }
+
         $db.doc.put($scope._doc, function(data) {
           console.log("put:", data);
-
           $scope._doc._rev=data.rev;
         });
       },
@@ -51,7 +74,6 @@ angular.module('angularTestApp')
 
     };
 
-    $scope._doc.grid.data={};
     //$scope._doc.grid.enableCellEditOnFocus = true;
     //$scope._doc.grid.enableSorting = false;
     //$scope._doc.grid.rowEditWaitInterval= -1;
@@ -81,19 +103,28 @@ angular.module('angularTestApp')
 
     $db.doc.get($scope._day, function(data) {
         $scope._doc=data;
+
         console.log(data);
     })
       .error(function() {
         console.log("error");
-        $db.doc.get($scope._day_literal+"2", function(data) {
+        $db.doc.get($scope._day_literal, function(data) {
           $scope._doc=data;
           moment.locale("ru");
           $scope._doc.date=moment.unix($scope._day).format('dddd DD MMMM YYYY');
           $scope._doc._id=$scope._day;
           $scope._doc.type="schedule";
           $scope._doc._rev=undefined;
-          $scope._doc.grid.columns=$scope._doc.grid.columnDefs.map(function(i) {return i.name});
-          console.log($scope._doc.grid);
+          $scope._doc.cellStyle=new Array(10);
+
+          // $scope._doc.grid.columns=$scope._doc.grid.columns.map(function(i) {
+          //   console.log(i);
+          //   return {
+          //     data: i,
+          //     renderer: $scope.validRenderer
+          //   };
+          // });
+          console.log($scope._doc);
           //$scope.$apply();
 
         });

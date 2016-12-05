@@ -31,9 +31,10 @@ angular.module('angularTestApp')
         Handsontable.renderers.TextRenderer.apply(this, arguments);
         //console.log('validRenderer: ',td, row, col, prop, value);
         var _row = $scope._doc.cellStyle[row];
-        if(_row !== null) {
-           td.style.color = "#eee"
-           console.log("exist", col, _row[col]);
+        if(_row !== null && _row[col]) {
+           td.style.backgroundColor = "#eee"
+           //console.log("exist", col, _row[col]);
+           //console.log(td.style);
         }
         //console.log(td);
 
@@ -52,7 +53,7 @@ angular.module('angularTestApp')
       colHeaders: true,
       // callbacks have 'on' prefix
       onAfterInit: function() {
-        console.log('onAfterInit call');
+        //console.log('onAfterInit call');
       },
       onAfterChange: function(index, amount) {
         //console.log($scope._doc);

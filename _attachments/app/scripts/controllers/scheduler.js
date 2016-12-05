@@ -33,8 +33,9 @@ angular.module('angularTestApp')
         var _row = $scope._doc.cellStyle[row];
         if(_row && _row !== null) {
           if(typeof _row[col] !== 'undefined') {
-            td.style.backgroundColor = "#eee"
-
+            td.style.backgroundColor = "#eee";
+            $(td).addClass("edited");
+            console.log(td);
           }
            //console.log("exist", col, _row[col]);
            //console.log(td.style);
@@ -45,6 +46,11 @@ angular.module('angularTestApp')
     };
     $scope.dates=[];
 
+
+        $scope.location = function (_day) {
+          $location.path("/scheduler/"+ _day);
+          $scope.$apply
+        }
     $scope.settings = {
       // contextMenu: [
       //   'row_above', 'row_below', 'remove_row'
@@ -54,6 +60,7 @@ angular.module('angularTestApp')
       colWidths: 30, // can also be a number or a function
       rowHeaders: true,
       colHeaders: true,
+      mergeCells: $scope._doc.grid.mergeCells,
       // callbacks have 'on' prefix
       onAfterInit: function() {
         //console.log('onAfterInit call');
@@ -78,10 +85,6 @@ angular.module('angularTestApp')
 
     };
 
-    //$scope._doc.grid.enableCellEditOnFocus = true;
-    //$scope._doc.grid.enableSorting = false;
-    //$scope._doc.grid.rowEditWaitInterval= -1;
-
 
     if($routeParams.day ===  undefined) {
         var tomorrow=Date.today().add(1).days();
@@ -96,14 +99,6 @@ angular.module('angularTestApp')
       }
       moment.locale("en");
     $scope._day_literal = moment.unix($scope._day).format("dddd").toLowerCase();
-
-
-
-
-    $scope.location = function (_day) {
-      $location.path("/scheduler/"+ _day);
-      $scope.$apply
-    }
 
     $db.doc.get($scope._day, function(data) {
         $scope._doc=data;
@@ -120,14 +115,7 @@ angular.module('angularTestApp')
           $scope._doc.type="schedule";
           $scope._doc._rev=undefined;
           $scope._doc.cellStyle=new Array(10);
-
-          // $scope._doc.grid.columns=$scope._doc.grid.columns.map(function(i) {
-          //   console.log(i);
-          //   return {
-          //     data: i,
-          //     renderer: $scope.validRenderer
-          //   };
-          // });
+          $scope.settings.mergeCells = data.grid.mergeCells;
           console.log($scope._doc);
           //$scope.$apply();
 
@@ -139,24 +127,8 @@ angular.module('angularTestApp')
     $scope.dates=data.map(function(i) {
       return i.id;
     });
-    $scope.$apply
+    //$scope.$apply
   });
-
-
-    $scope._doc.grid.onRegisterApi = function(gridApi){
-      //set gridApi on scope
-      $scope.gridApi = gridApi;
-      gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
-            newValue = "+"+newValue;
-            console.log(newValue, rowEntity, colDef);
-
-            $db.doc.put($scope._doc, function(data) {
-              console.log("put:", data);
-              $scope._doc._rev=data.rev;
-            });
-          });
-    };
-
 
 
 

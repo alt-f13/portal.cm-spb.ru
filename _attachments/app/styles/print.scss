@@ -8,17 +8,37 @@
       width: 210mm;
       height: 297mm;
   }
-  table {
-    min-width: 290mm;
-    min-height: 190mm;
+  body {
+    -webkit-print-color-adjust: exact;
+    font-size: 14pt;
+    font-weight: bold;
+    //font-family: monospace;
   }
 
+  table {
+    min-width: 275mm;
+    min-height: 170mm;
+  }
+  .handsontable {
+    th:last-child {
+      border-bottom: 0px;
+    }
+    th {
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+  .edited {
+    background-color: rgb(124, 124, 124) !important;
+    -webkit-print-color-adjust: exact;
+
+  }
   h1, div.header, div.footer, div.pickmeup {
      display: none !important;
   }
   a[href^=http]:after {
     content:" <" attr(href) ">";
   }
-  * { -webkit-print-color-adjust: exact; }
+  //* { -webkit-print-color-adjust: exact; }
 
 }

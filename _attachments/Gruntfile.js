@@ -455,7 +455,8 @@ module.exports = function (grunt) {
             '*.html',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*',
-            'CNAME'
+            'CNAME',
+            'scripts/jquery.pickmeup.js'
           ]
         }, {
           expand: true,
@@ -467,10 +468,15 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: '.',
+          src: 'bower_components/moment/*',
+          dest: '<%= yeoman.dist %>'
         },{
           expand: true,
           cwd: '.',
-          src: 'bower_components/DateJS/build/production/date.min.js',
+          src: 'bower_components/DateJS/build/production/*',  //bower_components/moment/locale/ru.js
           dest: '<%= yeoman.dist %>'
         },{
           expand: true,

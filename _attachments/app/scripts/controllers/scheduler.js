@@ -17,7 +17,7 @@ function transponse(arr) {
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('SchedulerCtrl', function ($scope, $sce, $filter, $interval, $q, couchdb, $routeParams, $location) {
+  .controller('SchedulerCtrl', function ($scope, couchdb, $routeParams, $location) {
     var $db = $scope.$db = couchdb;
     var _day;
     $scope._doc={
@@ -35,7 +35,7 @@ angular.module('angularTestApp')
           if(typeof _row[col] !== 'undefined') {
             td.style.backgroundColor = "#eee";
             $(td).addClass("edited");
-            console.log(td);
+            //console.log(td);
           }
            //console.log("exist", col, _row[col]);
            //console.log(td.style);
@@ -106,7 +106,7 @@ angular.module('angularTestApp')
         console.log(data);
     })
       .error(function() {
-        console.log("error");
+        //console.log("error");
         $db.doc.get($scope._day_literal, function(data) {
           $scope._doc=data;
           moment.locale("ru");

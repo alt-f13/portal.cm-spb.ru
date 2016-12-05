@@ -31,8 +31,11 @@ angular.module('angularTestApp')
         Handsontable.renderers.TextRenderer.apply(this, arguments);
         //console.log('validRenderer: ',td, row, col, prop, value);
         var _row = $scope._doc.cellStyle[row];
-        if(_row !== null && _row[col]) {
-           td.style.backgroundColor = "#eee"
+        if(_row && _row !== null) {
+          if(typeof _row[col] !== 'undefined') {
+            td.style.backgroundColor = "#eee"
+
+          }
            //console.log("exist", col, _row[col]);
            //console.log(td.style);
         }

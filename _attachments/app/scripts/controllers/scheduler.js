@@ -20,6 +20,11 @@ angular.module('angularTestApp')
   .controller('SchedulerCtrl', function ($scope, couchdb, $routeParams, $location) {
     var $db = $scope.$db = couchdb;
     var _day;
+    $scope.$on('authenticated', function(e,data) {
+      console.log("scheduler authenticated event data:", data);
+      $scope.authenticated=data;
+    })
+
     $scope._doc={
       grid: {
         data: {},

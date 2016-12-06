@@ -20,11 +20,19 @@ angular.module('angularTestApp')
   .controller('SchedulerCtrl', function ($scope, couchdb, $routeParams, $location, hotRegisterer) {
     var $db = $scope.$db = couchdb;
     var _day;
+<<<<<<< HEAD
     var _hot =hotRegisterer.getInstance('my-handsontable');
     $scope.$on('authenticated', function(e,data) {
       console.log("sheduler authenticated event data:", data);
       $scope.authenticated=data;
     });
+=======
+    $scope.$on('authenticated', function(e,data) {
+      console.log("scheduler authenticated event data:", data);
+      $scope.authenticated=data;
+    })
+
+>>>>>>> 2e706d34fb865307925d1e466086e410c0b5abb0
     $scope._doc={
       grid: {
         data: {},

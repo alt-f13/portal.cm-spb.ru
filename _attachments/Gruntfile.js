@@ -471,7 +471,7 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.',
-          src: 'bower_components/moment/*',
+          src: 'bower_components/moment/locale/*',
           dest: '<%= yeoman.dist %>'
         },{
           expand: true,

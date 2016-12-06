@@ -23,16 +23,10 @@ var $app = angular
     'ngFileUpload',
     'textAngular',
     'ui.bootstrap',
-    'ngCookies',
+    //'ngCookies',
     'thatisuday.ng-image-gallery',
     'schemaForm',
     'ui.router',
-    'ui.grid',
-    'ui.grid.edit',
-    'ui.grid.rowEdit',
-    'ui.grid.cellNav',
-    'ui.grid.autoResize',
-    'ui.grid.resizeColumns',
     'ngHandsontable'
   ])
   .config(function ($routeProvider,$httpProvider,couchConfigProvider, ngImageGalleryOptsProvider) {

@@ -7,22 +7,24 @@ function (newDoc, oldDoc, userCtx, secObj) {
   // };
   //
   // // admins or owner can always delete
-  if (!v.isAdmin()) {
-     v.unauthorized("You not admin");
-  };
-  // if (((oldDoc && (oldDoc.author == userCtx.name))) && newDoc._deleted) return true;
+  // if (!v.isAdmin()) {
+  //    v.unauthorized("You not admin");
+  // };
+   if (((oldDoc && (oldDoc.author == userCtx.name))) && newDoc._deleted) return true;
   //
-  // v.unchanged("type");
-  // v.unchanged("author");
-  // v.unchanged("created_at");
+   v.unchanged("type");
+   v.unchanged("author");
+   v.unchanged("created_at");
   //
-  // if (newDoc.created_at) v.dateFormat("created_at");
+   if (newDoc.created_at) v.dateFormat("created_at");
   //
   // // docs with authors can only be saved by their author
   // // admin can author anything...
-  // if (!v.isAdmin() && newDoc.author && newDoc.author != userCtx.name) {
-  //   v.unauthorized("Only "+newDoc.author+" may edit this document.");
-  // }
+   if (!v.isAdmin() && newDoc.author && newDoc.author != userCtx.name) {
+    v.unauthorized("Only "+newDoc.author+" may edit this document.");
+   }
+    //newDoc.author = userCtx.name;
+
   //
   // if (newDoc.type == 'post') {
   //   if (!v.isAdmin() && !v.isAuthor()) {

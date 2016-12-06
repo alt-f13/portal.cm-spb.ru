@@ -17,9 +17,14 @@ function transponse(arr) {
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('SchedulerCtrl', function ($scope, couchdb, $routeParams, $location) {
+  .controller('SchedulerCtrl', function ($scope, couchdb, $routeParams, $location, hotRegisterer) {
     var $db = $scope.$db = couchdb;
     var _day;
+    var _hot =hotRegisterer.getInstance('my-handsontable');
+    $scope.$on('authenticated', function(e,data) {
+      console.log("sheduler authenticated event data:", data);
+      $scope.authenticated=data;
+    });
     $scope._doc={
       grid: {
         data: {},
@@ -55,12 +60,13 @@ angular.module('angularTestApp')
       // contextMenu: [
       //   'row_above', 'row_below', 'remove_row'
       // ],
+      contextMenu: true,
       rowHeights: 50,
       stretchH: 'all',
       colWidths: 30, // can also be a number or a function
       rowHeaders: true,
       colHeaders: true,
-      mergeCells: $scope._doc.grid.mergeCells,
+      //mergeCells: $scope._doc.grid.mergeCells,
       // callbacks have 'on' prefix
       onAfterInit: function() {
         //console.log('onAfterInit call');
@@ -102,7 +108,6 @@ angular.module('angularTestApp')
 
     $db.doc.get($scope._day, function(data) {
         $scope._doc=data;
-
         console.log(data);
     })
       .error(function() {
@@ -114,7 +119,13 @@ angular.module('angularTestApp')
           $scope._doc._id=$scope._day;
           $scope._doc.type="schedule";
           $scope._doc._rev=undefined;
+          console.log($db.user.get());
+          $scope._doc.author=$db.user.get().name;
           $scope._doc.cellStyle=new Array(10);
+          console.log(_hot.mergeCells.mergeRange(data.grid.mergeCells));
+          _hot.mergeCells = new Handsontable.MergeCells(data.grid.mergeCells);
+          _hot.updateSettings({ mergeCells: data.grid.mergeCells, cells: data.grid.data });
+          _hot.render();
           $scope.settings.mergeCells = data.grid.mergeCells;
           console.log($scope._doc);
           //$scope.$apply();

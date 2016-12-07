@@ -20,19 +20,13 @@ angular.module('angularTestApp')
   .controller('SchedulerCtrl', function ($scope, couchdb, $routeParams, $location, hotRegisterer) {
     var $db = $scope.$db = couchdb;
     var _day;
-<<<<<<< HEAD
+
     var _hot =hotRegisterer.getInstance('my-handsontable');
     $scope.$on('authenticated', function(e,data) {
       console.log("sheduler authenticated event data:", data);
       $scope.authenticated=data;
     });
-=======
-    $scope.$on('authenticated', function(e,data) {
-      console.log("scheduler authenticated event data:", data);
-      $scope.authenticated=data;
-    })
 
->>>>>>> 2e706d34fb865307925d1e466086e410c0b5abb0
     $scope._doc={
       grid: {
         data: {},
@@ -82,16 +76,17 @@ angular.module('angularTestApp')
       onAfterChange: function(index, amount) {
         //console.log($scope._doc);
         //console.log(index , amount);
-        if(index) {
+        if(index && $scope._doc._rev) {
           if(!$scope._doc.cellStyle) $scope._doc.cellStyle=new Array(10);
           if(!$scope._doc.cellStyle[index[0][0]]) $scope._doc.cellStyle[index[0][0]]={};
           $scope._doc.cellStyle[index[0][0]][index[0][1]]="grey"
+          $db.doc.put($scope._doc, function(data) {
+            console.log("put:", data);
+            $scope._doc._rev=data.rev;
+          });
         }
 
-        $db.doc.put($scope._doc, function(data) {
-          console.log("put:", data);
-          $scope._doc._rev=data.rev;
-        });
+
       },
       // contextMenuCopyPaste: {
       //       swfPath: 'zeroclipboard/dist/ZeroClipboard.swf';

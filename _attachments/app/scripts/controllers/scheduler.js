@@ -28,8 +28,6 @@ angular.module('angularTestApp')
     });
 
     $rootScope._doc={
-      _id: "",
-      _rev: "",
       grid: {
         data: {},
         columns: {}
@@ -70,14 +68,14 @@ angular.module('angularTestApp')
       colWidths: 30, // can also be a number or a function
       rowHeaders: true,
       colHeaders: true,
-      //mergeCells: $rootScope._doc.grid.mergeCells,
+      mergeCells: $rootScope._doc.grid.mergeCells,
       // callbacks have 'on' prefix
       onAfterInit: function() {
         //console.log('onAfterInit call');
       },
       onAfterChange: function(index, amount) {
         //console.log(index , amount);
-        if(index && $rootScope._doc._rev =='undefined') {
+        if(index && $rootScope._doc.type=='schedule') {
           console.log("onAfterChange:", $rootScope._doc);
 
           if(!$rootScope._doc.cellStyle) $rootScope._doc.cellStyle=new Array(10);

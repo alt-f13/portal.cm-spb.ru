@@ -64,7 +64,7 @@ var $app = angular
       }else {
         couchConfigProvider.setServer("https://couch.2d-it.ru");
       }
-    couchConfigProvider.setDB('gbook');
+    couchConfigProvider.setDB('cm-spb');
     $httpProvider.defaults.withCredentials = true;
 
     //couchConfigProvider.setMethod('method GET/JSONP');

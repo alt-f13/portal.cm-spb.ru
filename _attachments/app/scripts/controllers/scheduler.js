@@ -17,7 +17,7 @@ function transponse(arr) {
  * Controller of the angularTestApp
  */
 angular.module('angularTestApp')
-  .controller('SchedulerCtrl', function ($scope, couchdb, $routeParams, $location, hotRegisterer) {
+  .controller('SchedulerCtrl', function ($scope, couchdb, $routeParams, $location, hotRegisterer, $rootScope) {
     var $db = $scope.$db = couchdb;
     var _day;
 
@@ -27,7 +27,9 @@ angular.module('angularTestApp')
       $scope.authenticated=data;
     });
 
-    $scope._doc={
+    $rootScope._doc={
+      _id: "",
+      _rev: "",
       grid: {
         data: {},
         columns: {}
@@ -37,9 +39,9 @@ angular.module('angularTestApp')
     $scope.validRenderer = function(instance, td, row, col, prop, value, cellProperties){
         Handsontable.renderers.TextRenderer.apply(this, arguments);
         //console.log('validRenderer: ',td, row, col, prop, value);
-        var _row = $scope._doc.cellStyle[row];
-        if(_row && _row !== null) {
-          if(typeof _row[col] !== 'undefined') {
+        //var _row = $rootScope._doc.cellStyle[row];
+        if($rootScope._doc.cellStyle[row] && $rootScope._doc.cellStyle[row] !== null) {
+          if(typeof $rootScope._doc.cellStyle[row][col] !== 'undefined') {
             td.style.backgroundColor = "#eee";
             $(td).addClass("edited");
             //console.log(td);
@@ -68,29 +70,35 @@ angular.module('angularTestApp')
       colWidths: 30, // can also be a number or a function
       rowHeaders: true,
       colHeaders: true,
-      //mergeCells: $scope._doc.grid.mergeCells,
+      //mergeCells: $rootScope._doc.grid.mergeCells,
       // callbacks have 'on' prefix
       onAfterInit: function() {
         //console.log('onAfterInit call');
       },
       onAfterChange: function(index, amount) {
-        //console.log($scope._doc);
         //console.log(index , amount);
-        if(index && $scope._doc._rev) {
-          if(!$scope._doc.cellStyle) $scope._doc.cellStyle=new Array(10);
-          if(!$scope._doc.cellStyle[index[0][0]]) $scope._doc.cellStyle[index[0][0]]={};
-          $scope._doc.cellStyle[index[0][0]][index[0][1]]="grey"
-          $db.doc.put($scope._doc, function(data) {
+        if(index && $rootScope._doc._rev =='undefined') {
+          console.log("onAfterChange:", $rootScope._doc);
+
+          if(!$rootScope._doc.cellStyle) $rootScope._doc.cellStyle=new Array(10);
+          if(!$rootScope._doc.cellStyle[index[0][0]]) $rootScope._doc.cellStyle[index[0][0]]={};
+          $rootScope._doc.cellStyle[index[0][0]][index[0][1]]="grey"
+          $db.doc.put($rootScope._doc, function(data) {
             console.log("put:", data);
-            $scope._doc._rev=data.rev;
+            $rootScope._doc._rev=data.rev;
+          });
+        }else if (index && $rootScope._doc.type=='template') {
+          $db.doc.put($rootScope._doc, function(data) {
+            console.log("put:", data);
+            $rootScope._doc._rev=data.rev;
           });
         }
 
 
       },
-      // contextMenuCopyPaste: {
-      //       swfPath: 'zeroclipboard/dist/ZeroClipboard.swf';
-      // }
+      contextMenuCopyPaste: {
+            swfPath: 'bower_components/zeroclipboard/dist/ZeroClipboard.swf'
+      }
 
     };
 
@@ -110,34 +118,47 @@ angular.module('angularTestApp')
     $scope._day_literal = moment.unix($scope._day).format("dddd").toLowerCase();
 
     $db.doc.get($scope._day, function(data) {
-        $scope._doc=data;
+        $rootScope._doc=data;
         console.log(data);
+        if(data.type=='template') {
+          data.cellStyle=new Array(10);
+
+        }
     })
       .error(function() {
         //console.log("error");
         $db.doc.get($scope._day_literal, function(data) {
-          $scope._doc=data;
           moment.locale("ru");
-          $scope._doc.date=moment.unix($scope._day).format('dddd DD MMMM YYYY');
-          $scope._doc._id=$scope._day;
-          $scope._doc.type="schedule";
-          $scope._doc._rev=undefined;
-          console.log($db.user.get());
-          $scope._doc.author=$db.user.get().name;
-          $scope._doc.cellStyle=new Array(10);
-          console.log(_hot.mergeCells.mergeRange(data.grid.mergeCells));
-          _hot.mergeCells = new Handsontable.MergeCells(data.grid.mergeCells);
-          _hot.updateSettings({ mergeCells: data.grid.mergeCells, cells: data.grid.data });
-          _hot.render();
-          $scope.settings.mergeCells = data.grid.mergeCells;
-          console.log($scope._doc);
-          //$scope.$apply();
+          data.date=moment.unix($scope._day).format('dddd DD MMMM YYYY');
+          data._id=$scope._day;
+          data.type="schedule";
+          data._rev=undefined;
+          //console.log($db.user.get());
+          data.author=$db.user.get().name;
+          data.cellStyle=new Array(10);
+          // console.log(_hot.mergeCells.mergeRange(data.grid.mergeCells));
+          // _hot.mergeCells = new Handsontable.MergeCells(data.grid.mergeCells);
+          // _hot.updateSettings({ mergeCells: data.grid.mergeCells, cells: data.grid.data });
+          // _hot.render();
+          //$scope.settings.mergeCells = data.grid.mergeCells;
+          //console.log(data);
+          //$rootScope._doc=data;
+          console.log(data);
+          $db.doc.put(data, function(data2) {
+            console.log("new created:", data2);
+            //$rootScope._doc._rev=data.rev;
+            $db.doc.get($scope._day, function(data3) {
+                $rootScope._doc=data3;
+                console.log(data3);
+            });
+          });
+
 
         });
       });
 
   $db.view('scheduler', 'schedules', {}, function(data) {
-    console.log(data);
+    //console.log(data);
     $scope.dates=data.map(function(i) {
       return i.id;
     });

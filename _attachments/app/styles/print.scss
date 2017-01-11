@@ -33,7 +33,7 @@
     -webkit-print-color-adjust: exact;
 
   }
-  h1, div.header, div.footer, div.pickmeup {
+  h1, div.header, div.footer, div.pickmeup, .print-hidden {
      display: none !important;
   }
   a[href^=http]:after {

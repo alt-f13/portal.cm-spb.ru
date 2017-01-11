@@ -1,41 +1,36 @@
 {
-    "form": [
-        "name",
-        "email", {
-            "key": "comment",
-            "type": "textarea",
-            "placeholder": "Make a comment"
-        }, {
-            "type": "submit",
-            "style": "btn-info",
-            "title": "OK"
-        }
-    ],
+    "_id": "form",
+    "form": ["name", "email", {
+        "placeholder": "Make a comment",
+        "type": "textarea",
+        "key": "comment"
+    }, {
+        "style": "btn-info",
+        "type": "submit",
+        "title": "OK"
+    }],
+    "couchapp": {},
     "schema": {
+        "required": ["name", "email", "comment"],
         "type": "object",
-        "title": "Comment",
         "properties": {
+            "comment": {
+                "maxLength": 20,
+                "type": "string",
+                "validationMessage": "Don't be greedy!",
+                "title": "Comment"
+            },
             "name": {
-                "title": "Name",
-                "type": "string"
+                "type": "string",
+                "title": "Name"
             },
             "email": {
-                "title": "Email",
-                "type": "string",
                 "pattern": "^\\S+@\\S+$",
-                "description": "Email will be used for evil."
-            },
-            "comment": {
-                "title": "Comment",
                 "type": "string",
-                "maxLength": 20,
-                "validationMessage": "Don't be greedy!"
+                "description": "Email will be used for evil.",
+                "title": "Email"
             }
         },
-        "required": [
-            "name",
-            "email",
-            "comment"
-        ]
+        "title": "Comment"
     }
 }

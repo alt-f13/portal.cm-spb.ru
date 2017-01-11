@@ -1,5 +1,11 @@
+
+
 <div class="container">
   <h2>Расписание <span class="pull-right">{{_doc.date}}</span><h2>
+  <a href="javascript:window.print()" role="button" class="btn btn-primary active print-hidden pull-right">
+    <i class="fa fa-3x fa-print" aria-hidden="true"></i>
+
+  </a>
 </div>
 <div class="container-fluid" ng-controller="SchedulerCtrl">
      <div class="row">
@@ -21,7 +27,12 @@
          </hot-table>
        </div>
      </div>
+</div>
 
-
-
+<div class="container footer">
+    <a role="button" ng-href="#/scheduler/monday" class="btn btn-default">Понедельник</button>
+    <a role="button" ng-href="#/scheduler/tuesday" class="btn btn-default">Вторник</button>
+    <a role="button" ng-href="#/scheduler/wednesday" class="btn btn-default">Среда</button>
+    <a role="button" ng-href="#/scheduler/thursday" class="btn btn-default">Четверг</button>
+    <a role="button" ng-href="#/scheduler/friday" class="btn btn-default">Пятница</button>
 </div>

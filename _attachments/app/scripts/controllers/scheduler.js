@@ -68,7 +68,8 @@ angular.module('angularTestApp')
       colWidths: 30, // can also be a number or a function
       rowHeaders: true,
       colHeaders: true,
-      mergeCells: $rootScope._doc.grid.mergeCells,
+      mergeCells: true,
+      //mergeCells: $rootScope._doc.grid.mergeCells,
       // callbacks have 'on' prefix
       onAfterInit: function() {
         //console.log('onAfterInit call');

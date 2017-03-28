@@ -50,7 +50,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Новости</a></li>
               <li ng-show="authenticated"><a ng-href="#/scheduler/">Расписание</a></li>
-              <li><a ng-href="#/links">Ссылки</a></li>
+              <li><a ng-href="#/people">Коллектив</a></li>
               <li ng-show="!authenticated"><a ng-href="#" ng-click="loginModal()">Login</a></li>
               <li ng-show="!authenticated"><a ng-href="#" ng-click="registerModal()">Регистрация</a></li>
               <li ng-show="authenticated"><a ng-href="#" ng-click="logout()">Logout</a></li>
@@ -194,6 +194,7 @@
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/services/session.js"></script>
         <script src="scripts/controllers/links.js"></script>
+        <script src="scripts/controllers/people.js"></script>
         <!-- endbuild -->
         <script src="scripts/mindmup-editabletable.js" charset="utf-8"></script>
 

@@ -17,6 +17,7 @@
   },
   "homepage": "https://gitlab.com/alt-f13/scheduler#README",
   "dependencies": {
+    "angular-schema-form": "^0.8.13",
     "cheerio": "^0.22.0",
     "fs-cheerio": "^1.0.0"
   }

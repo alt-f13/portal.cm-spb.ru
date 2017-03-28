@@ -36,10 +36,10 @@ var $app = angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/post/:id?', {
-        templateUrl: 'views/post.html',
-        controller: 'PostCtrl',
-        controllerAs: 'post'
+      .when('/people', {
+        templateUrl: 'views/people.html',
+        controller: 'PeopleCtrl',
+        controllerAs: 'people'
       })
       .when('/posts', {
         templateUrl: 'views/posts.html',

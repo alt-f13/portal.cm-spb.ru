@@ -1,0 +1,22 @@
+<script type="text/ng-template" id="edit.human.html">
+  <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+     <h4>Редактирование</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div sf-schema="schema" sf-form="form" sf-model="model">
+      </div>
+      <input type="submit" value="Submit">
+      <button type="button" ng-click="_save()">Сохранить</button>
+    </form>
+    {{model}}
+  </div>
+
+</script>
+
+<ul class="list-group">
+  <li ng-repeat="human in doc" ng-click="edit(human.value)" class="list-group-item">
+    {{human.value.lastname}} {{human.value.firstname}} <span class="badge">{{human.value.appointment}}</span>
+  </li>
+</ul>

@@ -1,6 +1,90 @@
-<!doctype html> <html> <head> <meta charset="utf-8"> <title>Портал КОЛЛЕДЖА МЕТРОПОЛИТЕНА</title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/vendor.b4e85b57.css"> <link rel="stylesheet" href="styles/main.e64406f2.css"> </head> <body ng-app="angularTestApp" ng-controller="MainCtrl"> <!--[if lte IE 8]>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Портал КОЛЛЕДЖА МЕТРОПОЛИТЕНА</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.css" />
+    <link rel="stylesheet" href="bower_components/ng-image-gallery/dist/ng-image-gallery.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.min.css" />
+    <link rel="stylesheet" href="bower_components/pikaday/css/pikaday.css" />
+    <link rel="stylesheet" href="bower_components/handsontable/dist/handsontable.css" />
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.css" />
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.date.css" />
+    <link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.time.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="angularTestApp" ng-controller="MainCtrl">
+    <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]--> <!-- Add your site or application content here --> <div class="header"> <div class="navbar navbar-inverse" role="navigation"> <div class="container-fluid"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#/"> <img class="img-responsive" width="400" src="/images/logo-title-white.54737a4d.svg" alt=""> </a> </div> <div class="collapse navbar-collapse" id="js-navbar-collapse"> <ul class="nav navbar-nav"> <li class=""><a href="#/">Новости</a></li> <li ng-show="authenticated"><a ng-href="#/scheduler/">Расписание</a></li> <li><a ng-href="#/people">Коллектив</a></li> </ul> <form class="navbar-form navbar-right" name="loginForm" ng-submit="submitLogin()"> <div ng-show="!authenticated" class="form-group"> <input type="text" name="user" ng-model="username" class="form-control" placeholder="Логин"> <input type="password" name="pass" ng-model="password" class="form-control" placeholder="Пароль"> </div> <button ng-show="!authenticated" type="submit" class="btn btn-success">Ok</button> </form> <button ng-show="authenticated" class="btn btn-danger navbar-btn navbar-right" ng-click="logout()">Выйти</button> </div> </div> </div> </div> <div class="container-fluid"> <div ng-view=""></div> </div> <div class="footer navbar navbar-inverse navbar-fixed-bottom"> <div class="container-fluid"> <a href="https://github.com/alt-f13/">by DEN4eG</a> </div> </div> <!-- ##################### Login template --> <script type="text/ng-template" id="login.html"><div class="modal-header">
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div class="header" >
+      <div class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="#/">
+              <img class="img-responsive" width="400" src="/images/logo-title-white.svg" alt="">
+            </a>
+
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+              <li class=""><a href="#/">Новости</a></li>
+              <li ng-show="authenticated"><a ng-href="#/scheduler/">Расписание</a></li>
+              <li><a ng-href="#/people">Коллектив</a></li>
+            </ul>
+            <form class="navbar-form navbar-right" name='loginForm' ng-submit="submitLogin()">
+              <div  ng-show="!authenticated"  class="form-group">
+                <input type="text" name='user' ng-model='username' class="form-control" placeholder="Логин">
+                <input type="password" name='pass' ng-model='password'  class="form-control" placeholder="Пароль">
+
+              </div>
+              <button  ng-show="!authenticated" type="submit" class="btn btn-success">Ok</button>
+            </form>
+            <button ng-show="authenticated" class="btn btn-danger navbar-btn navbar-right"  ng-click="logout()">Выйти</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+    <div ng-view=""></div>
+    </div>
+
+    <div class="footer navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container-fluid">
+        <a href="https://github.com/alt-f13/">by DEN4eG</a>
+      </div>
+    </div>
+
+    <!-- ##################### Login template -->
+    <script type="text/ng-template" id="login.html">
+      <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
          <h4>Login form</h4>
       </div>
@@ -19,7 +103,13 @@
                <button class='btn btn-primary' type="submit">Login</button>
             </div>
          </form>
-      </div></script> <!-- ################# --> <!-- ##################### Login template --> <script type="text/ng-template" id="register.html"><div class="modal-header">
+      </div>
+
+    </script>
+    <!-- ################# -->
+    <!-- ##################### Login template -->
+    <script type="text/ng-template" id="register.html">
+      <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
          <h4>Регистрация</h4>
       </div>
@@ -38,10 +128,86 @@
                <button class='btn btn-primary' type="submit">Зарегистрироваться</button>
             </div>
          </form>
-      </div></script> <!-- ################# --> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <script>!function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+      </div>
+
+    </script>
+    <!-- ################# -->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
        }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
        ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');</script> <script src="scripts/vendor.cb7aa038.js"></script> <script src="scripts/jquery.pickmeup.06dc9068.js" charset="utf-8"></script> <script src="bower_components/moment/locale/ru.js" charset="utf-8"></script> <script src="bower_components/DateJS/build/production/date.min.js"></script> <script src="scripts/scripts.cdcc3fbd.js"></script> <script src="scripts/mindmup-editabletable.js" charset="utf-8"></script> </body> </html>
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/flow.js/dist/flow.js"></script>
+    <script src="bower_components/ng-flow/dist/ng-flow.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="bower_components/angular-simplecouch/angular.simplecouch.js"></script>
+    <script src="bower_components/tinymce/tinymce.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angularjs-datepicker/dist/angular-datepicker.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/hammerjs/hammer.js"></script>
+    <script src="bower_components/ng-image-gallery/dist/ng-image-gallery.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+    <script src="bower_components/tv4/tv4.js"></script>
+    <script src="bower_components/objectpath/lib/ObjectPath.js"></script>
+    <script src="bower_components/angular-schema-form/dist/schema-form.js"></script>
+    <script src="bower_components/angular-schema-form/dist/bootstrap-decorator.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/schema-form-file-upload/schema-form-file-upload.min.js"></script>
+    <script src="bower_components/numbro/numbro.js"></script>
+    <script src="bower_components/pikaday/pikaday.js"></script>
+    <script src="bower_components/zeroclipboard/dist/ZeroClipboard.js"></script>
+    <script src="bower_components/handsontable/dist/handsontable.js"></script>
+    <script src="bower_components/ngHandsontable/dist/ngHandsontable.js"></script>
+    <script src="bower_components/tx-tinymce/tx-tinymce.js"></script>
+    <script src="bower_components/angular-schema-form-tinymce/bootstrap-tinymce.min.js"></script>
+    <script src="bower_components/pickadate/lib/picker.js"></script>
+    <script src="bower_components/pickadate/lib/picker.date.js"></script>
+    <script src="bower_components/pickadate/lib/picker.time.js"></script>
+    <script src="bower_components/angular-schema-form-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-schema-form-nwp-file-upload/dist/schema-form-file.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script src="scripts/jquery.pickmeup.js" charset="utf-8"></script>
+    <script src="bower_components/moment/locale/ru.js" charset="utf-8"></script>
+    <script src="bower_components/DateJS/build/production/date.min.js"></script>
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/scheduler.js"></script>
+        <script src="scripts/filters/trust.js"></script>
+        <script src="scripts/directives/editabletable.js"></script>
+        <script src="scripts/directives/pickmeup.js"></script>
+        <script src="scripts/controllers/post.js"></script>
+        <script src="scripts/directives/ngthumb.js"></script>
+        <script src="scripts/controllers/posts.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/services/session.js"></script>
+        <script src="scripts/controllers/links.js"></script>
+        <script src="scripts/controllers/people.js"></script>
+        <script src="scripts/directives/attachments.js"></script>
+        <!-- endbuild -->
+        <script src="scripts/mindmup-editabletable.js" charset="utf-8"></script>
+
+</body>
+</html>

@@ -44,4 +44,22 @@
        }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
        ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');</script> <script src="scripts/vendor.840b2c9c.js"></script> <script src="scripts/jquery.pickmeup.06dc9068.js" charset="utf-8"></script> <script src="bower_components/moment/locale/ru.js" charset="utf-8"></script> <script src="bower_components/DateJS/build/production/date.min.js"></script> <script src="scripts/scripts.6a8cc77a.js"></script> <script src="scripts/mindmup-editabletable.js" charset="utf-8"></script> </body> </html>
+       ga('send', 'pageview');</script> <script type="text/ng-template" id="attachments.html"><div class="attachments row">
+        <div class="attachments-item col-md-2" ng-repeat="(name, param) in model._attachments">
+          <!-- {{name}}
+          <img ng-src="{{docUrl}}/{{name}}" alt="" class="attachments-image" width="100"> -->
+          <div class="thumbnail" ng-switch="param.content_type=='image/png'||param.content_type=='image/jpeg'">
+            <img ng-switch-when="true" ng-switch-when-separator="|" src="{{docUrl}}/{{name}}" alt="" width="100">
+            <div class="caption">
+              {{name}}
+            </div>
+          </div>
+        </div>
+        <div class="attachments-item col-md-2">
+                  <div  ngf-drop ngf-select ng-model="files" class="drop-box"
+                      ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                      accept="image/*,application/pdf"
+                      ngf-pattern="'image/*,application/pdf'">Drag-drop сюда или нажмите для загрузки</div>
+                  <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+        </div>
+      </div></script> <script src="scripts/vendor.840b2c9c.js"></script> <script src="scripts/jquery.pickmeup.06dc9068.js" charset="utf-8"></script> <script src="bower_components/moment/locale/ru.js" charset="utf-8"></script> <script src="bower_components/DateJS/build/production/date.min.js"></script> <script src="scripts/scripts.a6f5a206.js"></script> <script src="scripts/mindmup-editabletable.js" charset="utf-8"></script> </body> </html>
